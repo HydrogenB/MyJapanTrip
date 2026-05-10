@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rides & Reviews — DisneySea 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Sarabun:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.wait-bar {
+  background:rgba(232,184,75,.07); border:1px solid rgba(232,184,75,.13);
+  border-radius:8px; padding:10px 14px; margin:10px 0;
+  display:flex; flex-wrap:wrap; gap:14px; align-items:center;
+}
+.wait-stat { font-family:'DM Mono',monospace; }
+.wait-label { font-size:9px; color:var(--muted); letter-spacing:.08em; text-transform:uppercase; display:block; margin-bottom:2px; }
+.wait-val { font-size:14px; font-weight:600; color:var(--white); }
+.wait-val.r { color:#f08080; }
+.wait-val.a { color:#f5c060; }
+.wait-val.g { color:#6dd4a0; }
+.src { display:inline-block; font-family:'DM Mono',monospace; font-size:9px; padding:2px 7px; border-radius:100px; background:rgba(91,155,213,.12); color:#7ab4e0; border:1px solid rgba(91,155,213,.2); letter-spacing:.04em; margin-left:4px; vertical-align:middle; }
+.closure-alert { background:linear-gradient(135deg,rgba(224,85,85,.18),rgba(200,60,40,.08)); border:1.5px solid rgba(224,85,85,.45); border-radius:8px; padding:9px 13px; margin:10px 0; font-size:12px; color:#f08080; line-height:1.6; }
+.last-chance { background:linear-gradient(135deg,rgba(232,184,75,.18),rgba(200,120,30,.08)); border:1.5px solid rgba(232,184,75,.45); border-radius:8px; padding:9px 13px; margin:10px 0; font-size:12px; color:var(--gold2); line-height:1.6; }
+</style>
+</head>
+<body>
+<div class="stars"></div>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html"><span class="nav-icon">🗓️</span> Plan</a>
+    <a href="rides.html" class="active"><span class="nav-icon">🎢</span> Rides</a>
+    <a href="shows.html"><span class="nav-icon">✨</span> Shows</a>
+    <a href="food.html"><span class="nav-icon">🌿</span> Food</a>
+  </div>
+</nav>
+<div class="wrap">
+
+<div class="hero">
+  <div class="hero-badge">🎢 Real Reviews · ≤ 1 ปีย้อนหลัง · June 2026</div>
+  <h1>Rides & Reviews</h1>
+  <p class="hero-sub">รีวิวจากคนที่ไปมาจริง ครบ 14 เครื่องเล่น พร้อม wait time จริงจาก queue-times.com</p>
+  <div class="hero-divider"></div>
+</div>
+
+<div class="tip-box fade-in" style="border-color:rgba(91,155,213,.3);background:linear-gradient(135deg,rgba(91,155,213,.1),rgba(91,155,213,.04));">
+  📊 <strong>Wait time จาก queue-times.com:</strong> ข้อมูลจริงวันธรรมดา ต.ค.–พ.ย. 2568 · 4–5 มิ.ย. (พฤหัส–ศุกร์) คาดสั้นกว่าวันหยุดประมาณ 20–40%
+</div>
+
+<div class="alert-fire fade-in">
+  <div class="alert-icon">⚠️</div>
+  <div>
+    <div class="alert-title">อัปเดตสำคัญ — เช็คก่อนวันไปทุกครั้ง</div>
+    <div class="alert-text">
+      🔴 <strong>Indiana Jones</strong>: ปิดชั่วคราวตั้งแต่ 18 ส.ค. 2568 — TBD ยังไม่มีกำหนดเปิด<br>
+      🟡 <strong>Aquatopia</strong>: เปิดปกติจนถึง 30 มิ.ย. 2569 <strong style="color:#f5c060;">(ยังทัน!)</strong> · ปิดถาวร 14 ก.ย. 2569 หลัง 25 ปี<br>
+      เช็ค Tokyo Disney Resort app คืนก่อนวันไปสำหรับ status ล่าสุด
+    </div>
+  </div>
+</div>
+
+<!-- ====== ZONE 1: FANTASY SPRINGS ====== -->
+<div class="sec-label fade-in">Fantasy Springs — โซนใหม่ เปิดมิถุนายน 2567</div>
+
+<!-- FROZEN -->
+<div class="ride-card" style="border-color:rgba(91,155,213,.4);position:relative;">
+  <span class="must-badge">MUST #1</span>
+  <div class="ride-head">
+    <img class="ride-img" src="https://media1.tokyodisneyresort.jp/images/adventure/attraction/1110_main_visual_name_1.jpg?mod=20260402101123" alt="Frozen" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ride-img-ph" style="background:linear-gradient(135deg,#0d2a5e,#1a5fa0,#4badd4);display:none">❄️</div>
+    <div class="ride-meta">
+      <div class="ride-zone">FANTASY SPRINGS · ARENDELLE</div>
+      <div class="ride-name">Anna & Elsa's Frozen Journey</div>
+      <div class="ride-stars">★★★★★</div>
+      <div class="ride-badges">
+        <span class="badge b-type">Boat Dark Ride · 6.5 นาที</span>
+        <span class="badge b-dpa">DPA #1 · ¥2,000</span>
+        <span class="badge b-wait">avg 145–184 นาที</span>
+      </div>
+    </div>
+  </div>
+  <div class="ride-body">
+    <div class="wait-bar">
+      <div class="wait-stat"><span class="wait-label">เฉลี่ย วันธรรมดา</span><span class="wait-val r">145–184 นาที</span></div>
+      <div class="wait-stat"><span class="wait-label">สูงสุด (busy)</span><span class="wait-val r">280 นาที</span></div>
+      <div class="wait-stat"><span class="wait-label">DPA return</span><span class="wait-val g">5–10 นาที</span></div>
+      <span class="src">queue-times.com · Oct–Nov 2568</span>
+    </div>
+    <div class="quotes">
+      <div class="quote">"Flawless — a modern masterpiece of Imagineering. Show building ใหญ่กว่า 95,000 ตร.ฟุต มี animatronics ที่สมจริงที่สุดที่ Disney เคยสร้าง เป็น ride ที่จะทำให้คุณ rethink ความคาดหวังจาก Disney rides ทั้งหมด"<div class="quote-src">— Disney Tourist Blog <span class="src">Media Preview · พ.ค. 2567</span></div></div>
+      <div class="quote">"Peter Pan and Frozen are both 10/10. These two are definitely the 1A and 1B rides in Fantasy Springs — nearly flawless experiences that are among the best Walt Disney Imagineering has ever created. Most guests will prefer Frozen."<div class="quote-src">— Disney Tourist Blog <span class="src">ก.ค. 2567</span></div></div>
+      <div class="quote">"We got fast passes for Rapunzel, Peter Pan, Journey and Frozen. Absolutely worth it! Most rides are different than our Disney back in California, so it was fun! Highly recommend."<div class="quote-src">— Yelp user (California Disney fan) <span class="src">2568</span></div></div>
+      <div class="quote">"Frozen ran out first both days. One day decent weather, one heavy rain — both days we still had opportunity to pick up passes to all 3 headliner Fantasy Springs rides, though Frozen disappeared fastest."<div class="quote-src">— Disney Tourist Blog comment <span class="src">ม.ค. 2568</span></div></div>
+    </div>
+    <div class="tips-title">💡 Tips</div>
+    <div class="tip-item"><span class="tip-dot">▸</span><span>ซื้อ DPA ก่อนก้าวแรกเลย — ขายหมดใน 30 นาทีแรก คิว standby 145+ นาทีตลอดวัน</span></div>
+    <div class="tip-item"><span class="tip-dot">▸</span><span>มี Single Rider Line — ขึ้นรอบ 2 ได้เร็วมากถ้าไม่แคร้นั่งแยก</span></div>
+    <div class="tip-item"><span class="tip-dot">▸</span><span>คิวผ่าน Arendelle village ที่ themed ดีมาก — ไม่น่าเบื่อแม้คิวยาว มีอะไรให้ดูตลอดทาง</span></div>
+    <div class="verdict">🏆 <strong>สรุป:</strong> Ride ที่ดีที่สุดใน DisneySea — ห้ามพลาด ซื้อ DPA ก่อนก้าวแรก</div>
+  </div>
+</div>
+
+<!-- PETER PAN -->
+<div class="ride-card" style="position:relative;">
+  <span class="must-badge">MUST #2</span>
+  <div class="ride-head">
+    <img class="ride-img" src="https://media1.tokyodisneyresort.jp/images/adventure/attraction/1124_main_visual_name_1.jpg?mod=20260327160442" alt="Peter Pan" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ride-img-ph" style="background:linear-gradient(135deg,#0a1520,#12304a,#1a5a8a);display:none">⭐</div>
+    <div class="ride-meta">
+      <div class="ride-zone">FANTASY SPRINGS · NEVER LAND</div>
+      <div class="ride-name">Peter Pan's Never Land Adventure</div>
+      <div class="ride-stars">★★★★★</div>
+      <div class="ride-badges">
+        <span class="badge b-type">Trackless 3D Simulator</span>
+        <span class="badge b-dpa">DPA #3 · ¥2,000</span>
+        <span class="badge b-wait">avg 85–110 นาที</span>
+      </div>
+    </div>
+  </div>
+  <div class="ride-body">
+    <div class="wait-bar">
+      <div class="wait-stat"><span class="wait-label">เฉลี่ย วันธรรมดา</span><span class="wait-val a">85–110 นาที</span></div>
+      <div class="wait-stat"><span class="wait-label">สูงสุด</span><span class="wait-val r">160 นาที</span></div>
+      <div class="wait-stat"><span class="wait-label">Rope drop (08:50)</span><span class="wait-val g">30–45 นาที</span></div>
+      <span class="src">queue-times.com · Oct–Nov 2568</span>
+    </div>
+    <div class="quotes">
+      <div class="quote">"Never Land Adventure was the HIGHLIGHT for me — sense of personal connection with Peter Pan and the Darling kids through eye contact, facial expression, and how emotive the characters were. Better than Avatar Flight of Passage in some ways."<div class="quote-src">— Disney Tourist Blog commenter <span class="src">ม.ค. 2568</span></div></div>
+      <div class="quote">"Our second favourite — the most clever combination of a vehicle moving between scenes (like Pooh's Hunny Hunt) combined with 3D screens (like Soarin' + Harry Potter at USJ). Feels like a nice length. So visual you don't need Japanese at all. Glasses fit over regular glasses."<div class="quote-src">— The Tokyo Chapter <span class="src">มี.ค. 2569</span></div></div>
+      <div class="quote">"Peter Pan is a spectacular ride that really moves the needle on what people should expect from Disney rides."<div class="quote-src">— Disney Tourist Blog comment <span class="src">2568</span></div></div>
+    </div>
+    <div class="tips-title">💡 Tips</div>
+    <div class="tip-item"><span class="tip-dot">▸</span><span>รับแว่น 3D ก่อนขึ้นทุกครั้ง — แว่น DisneySea ใส่ทับแว่นตาปกติได้สบาย</span></div>
+    <div class="tip-item"><span class="tip-dot">▸</span><span>คิว rope drop เช้าสั้นแค่ 30-45 นาที — ลอง standby ก่อน อาจประหยัด DPA ¥8,000 ได้</span></div>
+    <div class="tip-item"><span class="tip-dot">▸</span><span>Mild กว่า Spider-Man แต่คล้ายกัน — คนที่เมา simulator หนักอาจรู้สึกเล็กน้อย</span></div>
+    <div class="verdict">⭐ <strong>สรุป:</strong> หลายคนบอกดีกว่า Frozen ในแง่อารมณ์ — ลอง standby เช้าก่อน อาจไม่ต้องซื้อ DPA</div>
+  </div>
+</div>
+
+<!-- RAPUNZEL -->
+<div class="ride-card">
+  <div class="ride-head">
+    <img class="ride-img" src="https://media1.tokyodisneyresort.jp/images/adventure/attraction/1117_main_visual_name_1.jpg?mod=20260402101040" alt="Rapunzel" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ride-img-ph" style="background:linear-gradient(135deg,#2a1a05,#5a3a10,#9a6820);display:none">🏮</div>
+    <div class="ride-meta">
+      <div class="ride-zone">FANTASY SPRINGS · RAPUNZEL'S FOREST</div>
+      <div class="ride-name">Rapunzel's Lantern Festival</div>
+      <div class="ride-stars">★★★★½</div>
+      <div class="ride-badges">
+        <span class="badge b-type">Slow Boat · ~4 นาที</span>
+        <span class="badge b-dpa">DPA #4 · ¥2,000</span>
+        <span class="badge b-wait">avg 102–113 นาที</span>
+      </div>
+    </div>
+  </div>
+  <div class="ride-body">
+    <div class="wait-bar">
+      <div class="wait-stat"><span class="wait-label">เฉลี่ย วันธรรมดา</span><span class="wait-val a">102–113 นาที</span></div>
+      <div class="wait-stat"><span class="wait-label">สูงสุด</span><span class="wait-val r">140–180 นาที</span></div>
+      <span class="src">queue-times.com · Oct–Nov 2568</span>
+    </div>
+    <div class="quotes">
+      <div class="quote">"We stood in line 3 hours for Rapunzel — it's over in less than 5 minutes. Beautiful but very short! The centrepiece Lantern Festival scene is magnificent."<div class="quote-src">— TripAdvisor user <span class="src">พ.ย. 2568</span></div></div>
+      <div class="quote">"You sit on a boat with 6-8 others and ride through scenes from Tangled. Flynn Rider and Pascal make numerous appearances. Has been called 'Disney's most romantic ride ever made.'"<div class="quote-src">— Pack Your Littles <span class="src">ก.ค. 2568</span></div></div>
+      <div class="quote">"Rapunzel is incredibly strong for being the third attraction in Fantasy Springs. The aesthetics of Fantasy Springs are whimsical — it feels like there should be fairies flying around overhead."<div class="quote-src">— Wandering in Disney <span class="src">ต.ค. 2567</span></div></div>
+    </div>
+    <div class="tips-title">💡 Tips</div>
+    <div class="tip-item"><span class="tip-dot">▸</span><span>หอคอย Rapunzel มองเห็นและได้ยินเพลงจากทั่ว Fantasy Springs — ถ่ายรูปจากนอกได้ฟรี!</span></div>
+    <div class="tip-item"><span class="tip-dot">▸</span><span>คิวสั้นกว่า Frozen และ Peter Pan — ลอง standby ก่อน ถ้าเกิน 60 นาทีค่อยซื้อ DPA</span></div>
+    <div class="verdict">🏮 <strong>สรุป:</strong> สั้นที่สุดใน Fantasy Springs แต่สวยที่สุด — ลอง standby ก่อน ประหยัด DPA ได้</div>
+  </div>
+</div>
+
+<!-- TINKER BELL -->
+<div class="ride-card">
+  <div class="ride-head">
+    <img class="ride-img" src="https://media1.tokyodisneyresort.jp/images/adventure/attraction/1131_main_visual_name_1.jpg?mod=20260402101005" alt="Tinker Bell" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ride-img-ph" style="background:linear-gradient(135deg,#1a2a05,#3a5010,#5a8020);display:none">🧚</div>
+    <div class="ride-meta">
+      <div class="ride-zone">FANTASY SPRINGS · PIXIE HOLLOW</div>
+      <div class="ride-name">Fairy Tinker Bell's Busy Buggies</div>
+      <div class="ride-stars">★★★½☆</div>
+      <div class="ride-badges">
+        <span class="badge b-type">Family Outdoor Ride</span>
+        <span class="badge b-free">Standby Only — ไม่มี DPA</span>
+        <span class="badge b-wait">avg 54–56 นาที</span>
+      </div>
+    </div>
+  </div>
+  <div class="ride-body">
+    <div class="wait-bar">
+      <div class="wait-stat"><span class="wait-label">เฉลี่ย วันธรรมดา</span><span class="wait-val a">54–56 นาที</span></div>
+      <div class="wait-stat"><span class="wait-label">สูงสุด</span><span class="wait-val a">80–90 นาที</span></div>
+      <span class="src">queue-times.com · Oct–Nov 2568</span>
+    </div>
+    <div class="quotes">
+      <div class="quote">"Fairy Tinker Bell's Busy Buggies was super cute! Everything is magnified to make you feel as small as Tinker Bell. Strong for what it is!"<div class="quote-src">— Mackintosh Travels <span class="src">ก.ค. 2568</span></div></div>
+      <div class="quote">"Starting April 1, 2025, standby lines are now available for all four Fantasy Springs rides — no more hard-to-get standby passes or restricted entry."<div class="quote-src">— TouringPlans.com <span class="src">มี.ค. 2568</span></div></div>
+    </div>
+    <div class="tips-title">💡 Tips</div>
+    <div class="tip-item"><span class="tip-dot">▸</span><span>ไม่มี DPA — standby อย่างเดียว คิวสั้นกว่า 3 ตัวอื่น เหมาะขึ้นระหว่างรอ DPA return time</span></div>
+    <div class="verdict">🧚 <strong>สรุป:</strong> Optional ผู้ใหญ่ — ขึ้นระหว่างรอ Frozen / Peter Pan return time ประหยัดเวลาดี</div>
+  </div>
+</div>
+
+<!-- ====== ZONE 2: MYSTERIOUS ISLAND ====== -->
+<div class="sec-label">Mysterious Island — ไข่มุกแท้ของ DisneySea</div>
+
+<!-- JOURNEY CENTER EARTH -->
+<div class="ride-card" style="position:relative;">
+  <span class="must-badge">MUST #3</span>
+  <div class="ride-head">
+    <img class="ride-img" src="https://media1.tokyodisneyresort.jp/images/adventure/attraction/631_main_visual_name_1.jpg?mod=20251208105223" alt="Journey" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ride-img-ph" style="background:linear-gradient(135deg,#1a0a00,#3a1800,#6a3010);display:none">🌋</div>
+    <div class="ride-meta">
+      <div class="ride-zone">MYSTERIOUS ISLAND · CAPTAIN NEMO'S LAB</div>
+      <div class="ride-name">Journey to the Center of the Earth</div>
+      <div class="ride-stars">★★★★★</div>
+      <div class="ride-badges">
+        <span class="badge b-type">Dark Ride + Thrill · 3 นาที · 75 km/h</span>
+        <span class="badge b-dpa">DPA + Priority Pass ฟรี</span>
+        <span class="badge b-wait">avg 146 นาที</span>
+      </div>
+    </div>
+  </div>
+  <div class="ride-body">
+    <div class="wait-bar">
+      <div class="wait-stat"><span class="wait-label">เฉลี่ย วันธรรมดา</span><span class="wait-val r">146 นาที</span></div>
+      <div class="wait-stat"><span class="wait-label">สูงสุด</span><span class="wait-val r">200 นาที</span></div>
+      <div class="wait-stat"><span class="wait-label">Rope drop เช้าแรก</span><span class="wait-val a">30–60 นาที</span></div>
+      <span class="src">queue-times.com · พ.ย. 2568</span>
+    </div>
+    <div class="quotes">
+      <div class="quote">"10/10 — Flagship attraction ของ DisneySea คิวเดินผ่าน lab สำรวจใต้ดินของ Captain Nemo ที่ detailed มาก ฉากภูเขาไฟระเบิดทำให้ทุกคนกระโดดจากที่นั่ง Exclusive ที่นี่ที่เดียวในโลก"<div class="quote-src">— Disney Tourist Blog <span class="src">ต.ค. 2568</span></div></div>
+      <div class="quote">"Journey — went straight there since you can't ride it anywhere else. Wait time was 160 minutes! But did 9 rides in 12 hours overall. No regrets whatsoever."<div class="quote-src">— Yelp user <span class="src">มี.ค. 2568</span></div></div>
+      <div class="quote">"Journey and 20,000 Leagues are by far the most worth it since they are originals. Only 15 minutes wait on our rainy August visit — language is immaterial, only one line of Japanese dialogue."<div class="quote-src">— Mackintosh Travels <span class="src">ก.ค. 2568</span></div></div>
+    </div>
+    <div class="tips-title">💡 Tips</div>
+    <div class="tip-item"><span class="tip-dot">▸</span><span>ไปเช้า — วันฝนตก คิวสั้นลงมากเพราะคนหนีฝน นี่คือ moment ทอง</span></div>
+    <div class="tip-item"><span class="tip-dot">▸</span><span>ใช้ Priority Pass ฟรีหรือ DPA — slot ว่างกว่า Frozen มาก</span></div>
+    <div class="tip-item"><span class="tip-dot">▸</span><span>ความสูงขั้นต่ำ 117 cm · ห้ามขึ้น: ความดันโลหิตสูง หัวใจ หลัง หญิงมีครรภ์</span></div>
+    <div class="verdict">🌋 <strong>สรุป:</strong> Exclusive อยู่ที่นี่ที่เดียวในโลก — ไปต้องขึ้น ถ้าทำได้ไปก่อน Frozen ตอนเช้า</div>
+  </div>
+</div>
+
+<!-- 20,000 LEAGUES -->
+<div class="ride-card">
+  <div class="ride-head">
+    <img class="ride-img" src="https://media1.tokyodisneyresort.jp/images/adventure/attraction/621_main_visual_name_1.jpg?mod=20260122102342" alt="20K Leagues" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ride-img-ph" style="background:linear-gradient(135deg,#00101a,#002535,#004560);display:none">🌊</div>
+    <div class="ride-meta">
+      <div class="ride-zone">MYSTERIOUS ISLAND</div>
+      <div class="ride-name">20,000 Leagues Under the Sea</div>
+      <div class="ride-stars">★★★★★</div>
+      <div class="ride-badges">
+        <span class="badge b-type">Submarine Dark Ride · ไม่เปียก!</span>
+        <span class="badge b-free">Priority Pass ฟรี แนะนำ</span>
+        <span class="badge b-wait">avg 33–34 นาที</span>
+      </div>
+    </div>
+  </div>
+  <div class="ride-body">
+    <div class="wait-bar">
+      <div class="wait-stat"><span class="wait-label">เฉลี่ย วันธรรมดา</span><span class="wait-val g">33–34 นาที!</span></div>
+      <div class="wait-stat"><span class="wait-label">สูงสุด</span><span class="wait-val a">60 นาที</span></div>
+      <div class="wait-stat"><span class="wait-label">เทียบ Journey</span><span class="wait-val g">สั้นกว่า 4x!</span></div>
+      <span class="src">queue-times.com · Oct–Nov 2568</span>
+    </div>
+    <div class="quotes">
+      <div class="quote">"10/10 — Sea rover dark ride สุดล้ำ นั่งใน Neptune pod 6 คน ดำลงทะเลลึก ทุกอย่างเป็น illusion สมจริง ไม่สามารถเห็นทุก detail ในรอบเดียว — ต้องขึ้นหลายครั้งถึงจะเห็นหมด"<div class="quote-src">— Disney Tourist Blog <span class="src">ต.ค. 2568</span></div></div>
+      <div class="quote">"Not claustrophobic? You will enjoy 20,000 Leagues. Neptune pod fits 6 comfortably — no height restrictions, no steep drops, no getting wet."<div class="quote-src">— Mackintosh Travels <span class="src">ก.ค. 2568</span></div></div>
+      <div class="quote">"Journey and 20,000 Leagues are the most worth it since they are originals. Make a list of Priority Pass rides — mine was Nemo, 20,000 leagues, Aquatopia."<div class="quote-src">— TripAdvisor user strategy <span class="src">ก.ย. 2567</span></div></div>
+    </div>
+    <div class="tips-title">💡 Tips</div>
+    <div class="tip-item"><span class="tip-dot">▸</span><span>คิวเฉลี่ยแค่ 33 นาที — ขึ้นได้ตอนบ่าย ไม่ต้องรีบ ใช้ Priority Pass ฟรี</span></div>
+    <div class="tip-item"><span class="tip-dot">▸</span><span>ไม่มีความสูงขั้นต่ำ เหมาะทุกวัย · ไม่เปียก · ดีสำหรับพักระหว่าง thrill rides</span></div>
+    <div class="verdict">🌊 <strong>สรุป:</strong> Hidden gem คิวสั้นที่สุดใน Mysterious Island — ขึ้นได้สบายๆ ช่วงบ่าย</div>
+  </div>
+</div>
+
+<!-- ====== ZONE 3: AMERICAN WATERFRONT + PORT DISCOVERY ====== -->
+<div class="sec-label">American Waterfront · Port Discovery</div>
+
+<!-- SOARING -->
+<div class="ride-card" style="position:relative;">
+  <span class="must-badge">DPA #2</span>
+  <div class="ride-head">
+    <img class="ride-img" src="https://media1.tokyodisneyresort.jp/images/adventure/attraction/1005_main_visual_name_1.jpg?mod=20251208103836" alt="Soaring" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ride-img-ph" style="background:linear-gradient(135deg,#0a1a35,#1a3a6e,#2d6cb0);display:none">✈️</div>
+    <div class="ride-meta">
+      <div class="ride-zone">MEDITERRANEAN HARBOR · PORT DISCOVERY</div>
+      <div class="ride-name">Soaring: Fantastic Flight</div>
+      <div class="ride-stars">★★★★★</div>
+      <div class="ride-badges">
+        <span class="badge b-type">Flying Simulator · 5 นาที</span>
+        <span class="badge b-dpa">DPA #2 · ¥2,000</span>
+        <span class="badge b-wait">avg 145–170 นาที</span>
+      </div>
+    </div>
+  </div>
+  <div class="ride-body">
+    <div class="wait-bar">
+      <div class="wait-stat"><span class="wait-label">เฉลี่ย วันธรรมดา</span><span class="wait-val r">145–170 นาที</span></div>
+      <div class="wait-stat"><span class="wait-label">สูงสุด</span><span class="wait-val r">180–220 นาที</span></div>
+      <div class="wait-stat"><span class="wait-label">DPA return</span><span class="wait-val g">~5 นาที</span></div>
+      <span class="src">queue-times.com · Oct–Nov 2568</span>
+    </div>
+    <div class="quotes">
+      <div class="quote">"DPA Soaring ขายหมดก่อน 09:30 น. ในวันที่เราไป (ศุกร์ พฤศจิกายน) — ซื้อพร้อม Frozen ตอนเข้าสวนเท่านั้น Pre-show Museum of Fantastic Flight ไม่มีในเวอร์ชันอื่นทั่วโลก"<div class="quote-src">— TripAdvisor user <span class="src">พ.ย. 2568</span></div></div>
+      <div class="quote">"Very gentle simulator, never felt sick. The pre-show museum made the wait much more enjoyable — we enjoyed Soaring very much."<div class="quote-src">— Dania Experiences <span class="src">ก.ค. 2568</span></div></div>
+    </div>
+    <div class="tips-title">💡 Tips</div>
+    <div class="tip-item"><span class="tip-dot">▸</span><span>ซื้อพร้อม Frozen (คน B ซื้อ Soaring ขณะ คน A ซื้อ Frozen) — ทำพร้อมกันได้ในทีม</span></div>
+    <div class="tip-item"><span class="tip-dot">▸</span><span>นั่งแถวหน้าสุดได้ experience ดีที่สุด — บอก Cast Member ถ้าอยากนั่งหน้า</span></div>
+    <div class="verdict">✈️ <strong>สรุป:</strong> Pre-show Museum ไม่มีที่ไหนในโลก — ซื้อ DPA พร้อม Frozen ทันทีที่เข้าสวน</div>
+  </div>
+</div>
+
+<!-- TOWER OF TERROR -->
+<div class="ride-card">
+  <div class="ride-head">
+    <img class="ride-img" src="https://media1.tokyodisneyresort.jp/images/adventure/attraction/71_main_visual_name_1.jpg?mod=20251208104211" alt="Tower" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ride-img-ph" style="background:linear-gradient(135deg,#1a0808,#3a1010,#5a1818);display:none">🏨</div>
+    <div class="ride-meta">
+      <div class="ride-zone">AMERICAN WATERFRONT · HOTEL HIGHTOWER</div>
+      <div class="ride-name">Tower of Terror</div>
+      <div class="ride-stars">★★★★½</div>
+      <div class="ride-badges">
+        <span class="badge b-type">Drop Tower · 102cm+</span>
+        <span class="badge b-dpa">DPA บ่าย ¥2,000</span>
+        <span class="badge b-wait">avg 77–140 นาที</span>
+      </div>
+    </div>
+  </div>
+  <div class="ride-body">
+    <div class="wait-bar">
+      <div class="wait-stat"><span class="wait-label">เฉลี่ย วันธรรมดา</span><span class="wait-val a">77–140 นาที</span></div>
+      <div class="wait-stat"><span class="wait-label">สูงสุด</span><span class="wait-val r">180 นาที</span></div>
+      <div class="wait-stat"><span class="wait-label">DPA ช่วงบ่าย</span><span class="wait-val g">มักยังเหลือ</span></div>
+      <span class="src">queue-times.com + review data · 2568</span>
+    </div>
+    <div class="quotes">
+      <div class="quote">"Best ride in DisneySea imo. Absolutely worth it despite 90+ min wait. Riding it AT NIGHT is the best — you can enjoy the beautiful night view of DisneySea. The thrill is so consistent. Has the feel of losing gravity."<div class="quote-src">— Wanderlog reviewer <span class="src">2568</span></div></div>
+      <div class="quote">"Story revolves around the haunting of Hotel Hightower owned by Harrison Hightower — impressive visual effects and engaging plot. The story should be easy to understand even without Japanese!"<div class="quote-src">— Wanderlog aggregated <span class="src">2568</span></div></div>
+      <div class="quote">"DPA สำหรับ Tower of Terror มักยังเหลืออยู่แม้ตอนสาย เพราะทุกคนรีบแย่ง Frozen กับ Soaring ก่อน"<div class="quote-src">— TripAdvisor user <span class="src">พ.ย. 2568</span></div></div>
+    </div>
+    <div class="tips-title">💡 Tips</div>
+    <div class="tip-item"><span class="tip-dot">▸</span><span>ขึ้นกลางคืน (หลัง 18:00) — วิว DisneySea จากยอด สวยมาก Mediterranean Harbor ไฟสวย</span></div>
+    <div class="tip-item"><span class="tip-dot">▸</span><span>Story ภาษาญี่ปุ่นแต่ props และ artifacts บอกเล่าเรื่องได้เอง ไม่ต้องเข้าใจทุกคำ</span></div>
+    <div class="verdict">🏨 <strong>สรุป:</strong> Story ดีที่สุดในบรรดา Tower of Terror ทุกสาขา — ซื้อ DPA ช่วงบ่าย มักยังเหลือ</div>
+  </div>
+</div>
+
+<!-- TOY STORY MANIA -->
+<div class="ride-card">
+  <div class="ride-head">
+    <img class="ride-img" src="https://media1.tokyodisneyresort.jp/images/adventure/attraction/161_main_visual_name_1.jpg?mod=20251208104342" alt="Toy Story" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ride-img-ph" style="background:linear-gradient(135deg,#1a1000,#3a2800,#6a5010);display:none">🎮</div>
+    <div class="ride-meta">
+      <div class="ride-zone">AMERICAN WATERFRONT · TOYVILLE TROLLEY PARK</div>
+      <div class="ride-name">Toy Story Mania!</div>
+      <div class="ride-stars">★★★★☆</div>
+      <div class="ride-badges">
+        <span class="badge b-type">3D Interactive Shooter</span>
+        <span class="badge b-dpa">DPA ¥2,000 (ถ้าจะขึ้น)</span>
+        <span class="badge b-wait">avg 107–124 นาที</span>
+      </div>
+    </div>
+  </div>
+  <div class="ride-body">
+    <div class="wait-bar">
+      <div class="wait-stat"><span class="wait-label">เฉลี่ย วันธรรมดา</span><span class="wait-val r">107–124 นาที</span></div>
+      <div class="wait-stat"><span class="wait-label">สูงสุด</span><span class="wait-val r">140–160 นาที</span></div>
+      <div class="wait-stat"><span class="wait-label">สถิติวันเปิดตัว</span><span class="wait-val r">400+ นาที!</span></div>
+      <span class="src">queue-times.com · Oct–Nov 2568</span>
+    </div>
+    <div class="quotes">
+      <div class="quote">"10/10 — แต่ถ้าเคยขึ้น version ที่ California หรือ Florida แล้ว ข้ามไปได้เลย เพราะเป็น direct clone ถ้าไม่เคยขึ้น → fun มากจริงๆ คิวยาว 107-124 นาทีตลอดวัน"<div class="quote-src">— Disney Tourist Blog <span class="src">ต.ค. 2568</span></div></div>
+      <div class="quote">"Toy Story Mania seems pretty similar to the one in Hong Kong Disneyland which is really average imo. Didn't manage to try it — queues were really long."<div class="quote-src">— Lemon8 user (Singapore) <span class="src">2568</span></div></div>
+      <div class="quote">"ไม่ได้ขึ้น Toy Story เพราะเคยไป Anaheim แล้ว สนใจ rides ที่ unique กว่า — Journey, Aquatopia เป็น rides ที่หาขึ้นไม่ได้ที่อื่น"<div class="quote-src">— TripAdvisor user strategy <span class="src">ก.ย. 2567</span></div></div>
+    </div>
+    <div class="tips-title">💡 Tips</div>
+    <div class="tip-item"><span class="tip-dot">▸</span><span>เคยขึ้นที่ US/HK แล้ว → ข้ามเพื่อเซฟเวลา DPA ไว้ซื้อ Frozen/Soaring ที่ unique กว่า</span></div>
+    <div class="tip-item"><span class="tip-dot">▸</span><span>ถ้าอยากขึ้น → rope drop เช้าหรือซื้อ DPA · ลอง standby 45 นาทีก่อนปิดก็ได้</span></div>
+    <div class="verdict">🎮 <strong>สรุป:</strong> Fun ถ้ายังไม่เคยขึ้น — แต่ถ้าเคยแล้ว ข้ามได้ เอาเวลาไป rides ที่ exclusive เฉพาะที่นี่</div>
+  </div>
+</div>
+
+<!-- AQUATOPIA (LAST CHANCE) -->
+<div class="ride-card" style="border-color:rgba(232,184,75,.5);">
+  <div class="ride-head">
+    <img class="ride-img" src="https://media1.tokyodisneyresort.jp/images/adventure/attraction/421_main_visual_name_1.jpg?mod=20260421160856" alt="Aquatopia" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ride-img-ph" style="background:linear-gradient(135deg,#002030,#004060,#006090);display:none">💧</div>
+    <div class="ride-meta">
+      <div class="ride-zone">PORT DISCOVERY</div>
+      <div class="ride-name">Aquatopia</div>
+      <div class="ride-stars">★★★½☆</div>
+      <div class="ride-badges">
+        <span class="badge b-type">Trackless Water Ride · Opening Day 2001</span>
+        <span class="badge b-free">Priority Pass ฟรี / Standby</span>
+        <span class="badge b-wait">avg 26 นาที เท่านั้น!</span>
+      </div>
+    </div>
+  </div>
+  <div class="ride-body">
+    <div class="last-chance">
+      🏁 <strong>LAST CHANCE — ปิดถาวร 14 กันยายน 2569!</strong> ประกาศ 20 เม.ย. 2569 (3 สัปดาห์ก่อน) · เปิดเป็นรุ่น "ปกติ" (ไม่เปียก) จนถึง 30 มิ.ย. 2569 · วันที่ 4–5 มิ.ย. ของคุณคือโอกาสหนึ่งในไม่กี่ครั้งสุดท้าย
+    </div>
+    <div class="wait-bar">
+      <div class="wait-stat"><span class="wait-label">เฉลี่ย วันธรรมดา</span><span class="wait-val g">26 นาที!</span></div>
+      <div class="wait-stat"><span class="wait-label">สูงสุด</span><span class="wait-val g">50 นาที</span></div>
+      <div class="wait-stat"><span class="wait-label">ปิดถาวร</span><span class="wait-val a">14 ก.ย. 2569</span></div>
+      <span class="src">queue-times.com · Oct 2568</span>
+    </div>
+    <div class="quotes">
+      <div class="quote">"Aquatopia is one of those attractions where it's impossible not to smile while riding. The ride punches above its weight. It also usually has a quick moving line — those are in short supply at Tokyo Disney Resort right now."<div class="quote-src">— Wandering in Disney <span class="src">เม.ย. 2569</span></div></div>
+      <div class="quote">"Aquatopia will permanently close on September 14th, 2026 to make way for new attractions in Port Discovery — it opened on September 4, 2001. Will close just 10 days before its 25th birthday."<div class="quote-src">— AllEars.net / WDW News Today <span class="src">เม.ย. 2569</span></div></div>
+      <div class="quote">"Three dozen vehicles designed to look like personal hovercraft move independently through a large water lagoon. You'll spin around and twirl off in unpredictable directions — no two rides are the same route!"<div class="quote-src">— Wikipedia / TouringPlans</div></div>
+    </div>
+    <div class="tips-title">💡 Tips</div>
+    <div class="tip-item"><span class="tip-dot">▸</span><span>คิวเฉลี่ยแค่ 26 นาที — ขึ้นได้ระหว่างรอ DPA return time ของ Frozen/Peter Pan</span></div>
+    <div class="tip-item"><span class="tip-dot">▸</span><span>เส้นทางเปลี่ยน random ทุกรอบ — ไม่มีรอบไหนเหมือนกัน! ขึ้น 2 รอบได้เลย</span></div>
+    <div class="verdict" style="color:var(--gold2);border-color:rgba(232,184,75,.3);background:linear-gradient(135deg,rgba(232,184,75,.12),rgba(232,184,75,.04));">
+      🏁 <strong style="color:var(--gold);">สรุป:</strong> ขึ้น! — คิวแค่ 26 นาที และนี่คือครั้งสุดท้ายก่อนปิดตัวหลัง 25 ปี ไม่มีเหตุผลที่จะข้าม
+    </div>
+  </div>
+</div>
+
+<!-- ====== ZONE 4: LOST RIVER DELTA ====== -->
+<div class="sec-label">Lost River Delta</div>
+
+<!-- INDIANA JONES (CLOSED) -->
+<div class="ride-card" style="opacity:.6;border-color:rgba(224,85,85,.4);">
+  <div class="ride-head">
+    <img class="ride-img" src="https://media1.tokyodisneyresort.jp/images/adventure/attraction/531_main_visual_name_1.jpg?mod=20260129160007" alt="Indiana Jones" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ride-img-ph" style="background:linear-gradient(135deg,#1a1005,#3a2a0a,#5a4010);display:none">🏺</div>
+    <div class="ride-meta">
+      <div class="ride-zone">LOST RIVER DELTA</div>
+      <div class="ride-name">Indiana Jones Adventure: Temple of the Crystal Skull</div>
+      <div class="ride-stars">★★★★½</div>
+      <div class="ride-badges">
+        <span class="badge b-closed">⚠️ ปิดชั่วคราว — TBD</span>
+        <span class="badge b-type">Enhanced Motion Vehicle</span>
+        <span class="badge b-free">Single Rider ✓ (ถ้าเปิด)</span>
+      </div>
+    </div>
+  </div>
+  <div class="ride-body">
+    <div class="closure-alert">🔴 <strong>ปิดชั่วคราวตั้งแต่ 18 สิงหาคม 2568</strong> · ยังไม่มีกำหนดเปิดใหม่ · เช็ค app วันก่อนไป</div>
+    <div class="quotes">
+      <div class="quote">"Entirely indoors — lots of bumps, jerks and sideways tilts, no steep drops. The scenes and props inside were super epic and intricate, creating a riveting, larger-than-life experience. Queue time about 60 minutes."<div class="quote-src">— Dania Experiences <span class="src">ก.ค. 2568 (ก่อนปิด)</span></div></div>
+      <div class="quote">"Indiana Jones Adventure was my FAVORITE RIDE of the entire park! The execution is similar to California's version but the whole Lost River Delta area is designed to support it — giving a much more immersive setting."<div class="quote-src">— Mackintosh Travels <span class="src">ก.ค. 2568 (ก่อนปิด)</span></div></div>
+    </div>
+    <div class="verdict" style="border-color:rgba(224,85,85,.3);background:linear-gradient(135deg,rgba(224,85,85,.1),rgba(224,85,85,.04));color:#f08080;">⚠️ <strong style="color:#f08080;">สถานะ:</strong> ปิดชั่วคราว ส.ค. 2568 — เช็ค app ก่อนวันไปอีกครั้ง</div>
+  </div>
+</div>
+
+<!-- RAGING SPIRITS -->
+<div class="ride-card">
+  <div class="ride-head">
+    <img class="ride-img" src="https://media1.tokyodisneyresort.jp/images/adventure/attraction/371_main_visual_name_1.jpg?mod=20260122101950" alt="Raging Spirits" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ride-img-ph" style="background:linear-gradient(135deg,#0d1a08,#1a380a,#2a5510);display:none">🔥</div>
+    <div class="ride-meta">
+      <div class="ride-zone">LOST RIVER DELTA</div>
+      <div class="ride-name">Raging Spirits</div>
+      <div class="ride-stars">★★★☆☆</div>
+      <div class="ride-badges">
+        <span class="badge b-type">Roller Coaster 360° · 1.5 นาที · 117cm+</span>
+        <span class="badge b-free">Single Rider ✓ — ไม่ต้อง DPA</span>
+        <span class="badge b-wait">avg 85–109 นาที</span>
+      </div>
+    </div>
+  </div>
+  <div class="ride-body">
+    <div class="wait-bar">
+      <div class="wait-stat"><span class="wait-label">เฉลี่ย วันธรรมดา</span><span class="wait-val a">85–109 นาที</span></div>
+      <div class="wait-stat"><span class="wait-label">Single Rider ช่วงเย็น</span><span class="wait-val g">สั้นกว่าครึ่ง</span></div>
+      <span class="src">queue-times.com · Oct–Nov 2568</span>
+    </div>
+    <div class="quotes">
+      <div class="quote">"น่าผิดหวังที่สุดใน DisneySea — facade สวยมาก มีไฟพ่น น้ำ แต่พอขึ้นจริงความเร็วไม่ถึง ห่วง 360° แต่ไม่รู้สึก thrill มากนัก อันดับ 19 จาก 20 ใน park rankings"<div class="quote-src">— Wandering in Disney</div></div>
+      <div class="quote">"A MUST do ride in the park. The upside down loop is amazing! Most thrilling ride in the park! (มุมมองต่างกันมาก!)"<div class="quote-src">— Foursquare reviewer</div></div>
+      <div class="quote">"Set among ancient ruins — one loop and a few little bumps. Traditional enclosed train experience. At last we had found a roller coaster at DisneySea!"<div class="quote-src">— Roller Coaster Ramble blog</div></div>
+    </div>
+    <div class="tips-title">💡 Tips</div>
+    <div class="tip-item"><span class="tip-dot">▸</span><span>ไปช่วง 17:00-18:00 — คิวสั้นสุดทั้งวัน + ไฟกลางคืนสวยกว่ากลางวันมาก</span></div>
+    <div class="tip-item"><span class="tip-dot">▸</span><span>Single Rider Line ถ้าไม่แคร้นั่งแยก — ประหยัดเวลาได้มาก</span></div>
+    <div class="tip-item"><span class="tip-dot">▸</span><span><strong style="color:#f08080;">อย่าซื้อ DPA</strong> — 1.5 นาที ไม่คุ้ม ประหยัดไว้ซื้อ Frozen/Soaring</span></div>
+    <div class="verdict">🔥 <strong>สรุป:</strong> Loop ride เดียวใน DisneySea — ไปตอนเย็น Single Rider ไม่ต้องซื้อ DPA</div>
+  </div>
+</div>
+
+<!-- ====== ZONE 5: ARABIAN COAST + MERMAID LAGOON ====== -->
+<div class="sec-label">Arabian Coast · Mermaid Lagoon — Underrated Gems</div>
+
+<!-- SINDBAD -->
+<div class="ride-card">
+  <div class="ride-head">
+    <img class="ride-img" src="https://media1.tokyodisneyresort.jp/images/adventure/attraction/511_main_visual_name_1.jpg?mod=20260122102122" alt="Sindbad" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ride-img-ph" style="background:linear-gradient(135deg,#1a0a20,#3a1540,#6a2570);display:none">⛵</div>
+    <div class="ride-meta">
+      <div class="ride-zone">ARABIAN COAST</div>
+      <div class="ride-name">Sindbad's Storybook Voyage</div>
+      <div class="ride-stars">★★★★☆</div>
+      <div class="ride-badges">
+        <span class="badge b-type">Slow Boat Dark Ride · ~8 นาที</span>
+        <span class="badge b-free">ไม่ต้อง DPA · คิวสั้นมาก!</span>
+        <span class="badge b-wait">avg 7–9 นาที!!</span>
+      </div>
+    </div>
+  </div>
+  <div class="ride-body">
+    <div class="wait-bar">
+      <div class="wait-stat"><span class="wait-label">เฉลี่ย วันธรรมดา</span><span class="wait-val g">7–9 นาที!!</span></div>
+      <div class="wait-stat"><span class="wait-label">สูงสุด</span><span class="wait-val g">&lt;20 นาที</span></div>
+      <div class="wait-stat"><span class="wait-label">Animatronics</span><span class="wait-val g">163 ตัว!</span></div>
+      <span class="src">queue-times.com · Oct–Nov 2568</span>
+    </div>
+    <div class="quotes">
+      <div class="quote">"มี animatronics มากที่สุดในบรรดา Disney rides ทั้งหมด 163 ตัว! Cross between 'it's a small world' and Pirates of the Caribbean — ถ้า Sindbad อยู่ใน American Disney parks มันจะถูกยกย่องว่าเป็น modern classic"<div class="quote-src">— TouringPlans.com</div></div>
+      <div class="quote">"The song 'Compass of Your Heart' was written by Disney Legend Alan Menken (Little Mermaid, Beauty and the Beast, Aladdin). It will burrow into your ear and stick there long after the flight home."<div class="quote-src">— Theme Park Insider</div></div>
+      <div class="quote">"Each room is cavernous — the singing giant looming over you is awe-inspiring! Chandu the tiger is the show-stealer — helpful, mischievous, endearing. An amazing scale that's unmatched in any other dark ride."<div class="quote-src">— Fanboy Planet <span class="src">เม.ย. 2567</span></div></div>
+    </div>
+    <div class="tips-title">💡 Tips</div>
+    <div class="tip-item"><span class="tip-dot">▸</span><span>คิว 7-9 นาที! — สั้นที่สุดในทั้งสวน แทบไม่ต้องรอเลย ขึ้นได้ทุกเมื่อที่ว่าง</span></div>
+    <div class="tip-item"><span class="tip-dot">▸</span><span>ไม่มีข้อจำกัดความสูง เหมาะทุกวัย · Indoor เย็นสบาย ดีช่วงพักแดด</span></div>
+    <div class="tip-item"><span class="tip-dot">▸</span><span>Dialog ภาษาญี่ปุ่น แต่ visual ดีมากจนไม่จำเป็นต้องเข้าใจเลย</span></div>
+    <div class="verdict">⛵ <strong>สรุป:</strong> Underrated ที่สุดใน DisneySea — คิวสั้น 7 นาที 163 animatronics เพลง Alan Menken ขึ้นได้ทุกช่วง</div>
+  </div>
+</div>
+
+<!-- NEMO SEARIDER -->
+<div class="ride-card">
+  <div class="ride-head">
+    <img class="ride-img" src="https://media1.tokyodisneyresort.jp/images/adventure/attraction/963_main_visual_name_1.jpg?mod=20260122101855" alt="Nemo SeaRider" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ride-img-ph" style="background:linear-gradient(135deg,#001520,#003040,#005060);display:none">🐠</div>
+    <div class="ride-meta">
+      <div class="ride-zone">PORT DISCOVERY</div>
+      <div class="ride-name">Nemo & Friends SeaRider</div>
+      <div class="ride-stars">★★★★☆</div>
+      <div class="ride-badges">
+        <span class="badge b-type">Moving Theatre Simulator</span>
+        <span class="badge b-free">Priority Pass ฟรี แนะนำ</span>
+        <span class="badge b-wait">avg 27–31 นาที</span>
+      </div>
+    </div>
+  </div>
+  <div class="ride-body">
+    <div class="wait-bar">
+      <div class="wait-stat"><span class="wait-label">เฉลี่ย วันธรรมดา</span><span class="wait-val g">27–31 นาที</span></div>
+      <div class="wait-stat"><span class="wait-label">สูงสุด</span><span class="wait-val a">50–80 นาที</span></div>
+      <span class="src">queue-times.com · Oct–Nov 2568</span>
+    </div>
+    <div class="quotes">
+      <div class="quote">"SeaRider ย่อขนาดให้เล็กเท่าปลาแล้วสำรวจทะเลพร้อม Nemo, Dory, Destiny the whale shark และ Hank the octopus — pre-show อธิบาย chiziminium เป็น effect ที่ impressive มาก"<div class="quote-src">— TDR Explorer (full review)</div></div>
+      <div class="quote">"I usually get motion sickness on these types of attractions and this didn't cause me any discomfort — the movements are not as intense as the former StormRider. I disembarked with a goofy smile."<div class="quote-src">— TDR Explorer (2017, ride ยังเหมือนเดิม)</div></div>
+      <div class="quote">"Make a list of Priority Pass rides in order. Mine was Nemo, 20,000 leagues, Aquatopia — these three are great for the free Priority Pass strategy."<div class="quote-src">— TripAdvisor user strategy <span class="src">ก.ย. 2567</span></div></div>
+    </div>
+    <div class="tips-title">💡 Tips</div>
+    <div class="tip-item"><span class="tip-dot">▸</span><span>Priority Pass ฟรี — slot ว่างมากกว่า Frozen มาก ใช้ได้สบายๆ</span></div>
+    <div class="tip-item"><span class="tip-dot">▸</span><span>Mild กว่า Spider-Man / Harry Potter — คนที่ไม่ชอบ simulator ขึ้นได้สบาย</span></div>
+    <div class="tip-item"><span class="tip-dot">▸</span><span>อาคารนี้ยังอยู่แม้ Aquatopia ปิด (concept art ยืนยัน) — ปลอดภัย ขึ้นได้</span></div>
+    <div class="verdict">🐠 <strong>สรุป:</strong> Family ride น่ารัก คิวสั้น 27 นาที ใช้ Priority Pass ฟรีได้เลย</div>
+  </div>
+</div>
+
+<!-- WAIT TIME SUMMARY TABLE -->
+<div class="sec-label" style="margin-top:8px;">Quick Reference — Wait Time จริงทุก Ride</div>
+<div class="cost-box">
+  <div class="cost-head"><div class="cost-head-title">📊 Average Wait Times วันธรรมดา — queue-times.com ต.ค.–พ.ย. 2568</div></div>
+  <div class="cost-row"><span class="cost-lbl" style="color:#f08080;">❄️ Frozen Journey</span><span class="cost-val" style="color:#f08080;">avg 145–184 / max 280 นาที</span></div>
+  <div class="cost-row"><span class="cost-lbl" style="color:#f08080;">✈️ Soaring</span><span class="cost-val" style="color:#f08080;">avg 145–170 / max 220 นาที</span></div>
+  <div class="cost-row"><span class="cost-lbl" style="color:#f08080;">🌋 Journey Center Earth</span><span class="cost-val" style="color:#f08080;">avg 146 / max 200 นาที</span></div>
+  <div class="cost-row"><span class="cost-lbl" style="color:#f5c060;">🎮 Toy Story Mania</span><span class="cost-val" style="color:#f5c060;">avg 107–124 / max 160 นาที</span></div>
+  <div class="cost-row"><span class="cost-lbl" style="color:#f5c060;">🏮 Rapunzel</span><span class="cost-val" style="color:#f5c060;">avg 102–113 / max 180 นาที</span></div>
+  <div class="cost-row"><span class="cost-lbl" style="color:#f5c060;">⭐ Peter Pan</span><span class="cost-val" style="color:#f5c060;">avg 85–110 / max 160 นาที</span></div>
+  <div class="cost-row"><span class="cost-lbl" style="color:#f5c060;">🔥 Raging Spirits</span><span class="cost-val" style="color:#f5c060;">avg 85–109 / max 140 นาที</span></div>
+  <div class="cost-row"><span class="cost-lbl" style="color:#f5c060;">🏨 Tower of Terror</span><span class="cost-val" style="color:#f5c060;">avg 77–140 / max 180 นาที</span></div>
+  <div class="cost-row"><span class="cost-lbl" style="color:#f5c060;">🧚 Tinker Bell</span><span class="cost-val" style="color:#f5c060;">avg 54–56 / max 90 นาที</span></div>
+  <div class="cost-row"><span class="cost-lbl" style="color:#6dd4a0;">🌊 20,000 Leagues</span><span class="cost-val" style="color:#6dd4a0;">avg 33–34 / max 60 นาที ✓</span></div>
+  <div class="cost-row"><span class="cost-lbl" style="color:#6dd4a0;">🐠 Nemo SeaRider</span><span class="cost-val" style="color:#6dd4a0;">avg 27–31 / max 80 นาที ✓</span></div>
+  <div class="cost-row"><span class="cost-lbl" style="color:#6dd4a0;">💧 Aquatopia 🏁</span><span class="cost-val" style="color:var(--gold);">avg 26 / max 50 นาที · LAST CHANCE</span></div>
+  <div class="cost-row" style="border-bottom:none;"><span class="cost-lbl" style="color:#6dd4a0;">⛵ Sindbad</span><span class="cost-val" style="color:#6dd4a0;">avg 7–9 / max 20 นาที ✓✓</span></div>
+</div>
+
+<div class="footer" style="margin-top:24px;">
+  <div class="footer-logo">DisneySea · June 2026</div>
+  <div>Rides & Reviews — 14 attractions · Real visitor reviews · Live wait time data</div>
+</div>
+</div>
+</body>
+</html>
