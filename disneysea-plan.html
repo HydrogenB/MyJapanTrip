@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DisneySea — Execution Plan 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Sarabun:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #060d24;
+  --navy2: #0d1a3a;
+  --navy3: #152248;
+  --gold: #e8b84b;
+  --gold2: #f5d07a;
+  --gold3: #c49a2e;
+  --white: #f4f0e8;
+  --muted: rgba(244,240,232,0.55);
+  --border: rgba(232,184,75,0.2);
+  --red: #e05555;
+  --green: #4caf7d;
+  --blue: #5b9bd5;
+  --purple: #9b7fd4;
+  --teal: #3dbfa0;
+  --amber: #f0a030;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--navy);
+  color: var(--white);
+  font-family: 'Sarabun', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── Stars background ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(232,184,75,0.04) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(91,155,213,0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.stars {
+  position: fixed; inset: 0; z-index: 0;
+  background-image:
+    radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 25% 45%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 40% 20%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 55%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 75% 10%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 85% 38%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 92% 70%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 15% 75%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 50% 85%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 33% 60%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 70% 28%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 88% 85%, rgba(255,255,255,0.6) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.wrap { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 0 24px 80px; }
+
+/* ── HERO ── */
+.hero {
+  text-align: center;
+  padding: 64px 0 48px;
+  position: relative;
+}
+.hero-badge {
+  display: inline-block;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--border);
+  padding: 6px 16px;
+  border-radius: 100px;
+  margin-bottom: 20px;
+  background: rgba(232,184,75,0.06);
+}
+.hero h1 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(28px, 6vw, 52px);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  background: linear-gradient(135deg, var(--gold2) 0%, var(--white) 50%, var(--gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 12px;
+}
+.hero-sub {
+  font-size: 15px;
+  color: var(--muted);
+  max-width: 480px;
+  margin: 0 auto 32px;
+}
+.hero-divider {
+  width: 60px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 0 auto 28px;
+}
+
+/* ── STATS ── */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 56px;
+}
+.stat-card {
+  background: var(--navy2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 12px;
+  text-align: center;
+  transition: border-color 0.2s;
+}
+.stat-card:hover { border-color: rgba(232,184,75,0.5); }
+.stat-num {
+  font-family: 'Cinzel', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 4px;
+}
+.stat-lbl { font-size: 11px; color: var(--muted); letter-spacing: 0.05em; }
+
+/* ── SECTION ── */
+.section { margin-bottom: 48px; }
+.section-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold3);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--border), transparent);
+}
+
+/* ── ALERT BOX ── */
+.alert-fire {
+  background: linear-gradient(135deg, rgba(224,85,85,0.12), rgba(240,160,48,0.08));
+  border: 1px solid rgba(224,85,85,0.35);
+  border-radius: 14px;
+  padding: 18px 20px;
+  margin-bottom: 28px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.alert-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+.alert-title { font-size: 15px; font-weight: 600; color: #f08080; margin-bottom: 4px; }
+.alert-text { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+/* ── TIMELINE ── */
+.timeline { display: flex; flex-direction: column; }
+.t-step { display: grid; grid-template-columns: 70px 36px 1fr; gap: 0; }
+.t-time {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  color: var(--gold3);
+  padding-top: 18px;
+  text-align: right;
+  padding-right: 0;
+  font-weight: 500;
+}
+.t-spine {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 12px;
+}
+.t-dot {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  margin-top: 16px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+.t-dot::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  opacity: 0.3;
+}
+.t-dot.red { background: var(--red); }
+.t-dot.red::after { background: var(--red); }
+.t-dot.amber { background: var(--amber); }
+.t-dot.amber::after { background: var(--amber); }
+.t-dot.green { background: var(--green); }
+.t-dot.green::after { background: var(--green); }
+.t-dot.blue { background: var(--blue); }
+.t-dot.blue::after { background: var(--blue); }
+.t-dot.purple { background: var(--purple); }
+.t-dot.purple::after { background: var(--purple); }
+.t-dot.teal { background: var(--teal); }
+.t-dot.teal::after { background: var(--teal); }
+.t-dot.gray { background: rgba(244,240,232,0.25); }
+.t-line { flex: 1; width: 1px; background: var(--border); margin-top: 3px; }
+.t-body { padding: 10px 0 20px; }
+.t-title { font-size: 15px; font-weight: 600; color: var(--white); line-height: 1.4; margin-bottom: 5px; }
+.t-sub { font-size: 13px; color: var(--muted); line-height: 1.65; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 100px;
+  letter-spacing: 0.03em;
+}
+.tag-dpa { background: rgba(240,160,48,0.15); color: #f5c060; border: 1px solid rgba(240,160,48,0.3); }
+.tag-free { background: rgba(76,175,125,0.15); color: #6dd4a0; border: 1px solid rgba(76,175,125,0.3); }
+.tag-warn { background: rgba(224,85,85,0.15); color: #f08080; border: 1px solid rgba(224,85,85,0.3); }
+.tag-info { background: rgba(91,155,213,0.15); color: #7ab4e0; border: 1px solid rgba(91,155,213,0.3); }
+
+/* ── RIDE CARDS ── */
+.rides-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 48px;
+}
+.ride-card {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--navy2);
+  transition: transform 0.2s, border-color 0.2s;
+  position: relative;
+}
+.ride-card:hover { transform: translateY(-3px); border-color: rgba(232,184,75,0.45); }
+.ride-img {
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+  display: block;
+}
+.ride-img-placeholder {
+  width: 100%;
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 42px;
+}
+.ride-body { padding: 14px; }
+.ride-name { font-family: 'Cinzel', serif; font-size: 12px; font-weight: 600; color: var(--gold); margin-bottom: 4px; letter-spacing: 0.03em; line-height: 1.3; }
+.ride-zone { font-size: 10px; color: var(--muted); margin-bottom: 6px; font-family: 'DM Mono', monospace; letter-spacing: 0.08em; }
+.ride-desc { font-size: 12px; color: var(--muted); line-height: 1.5; margin-bottom: 8px; }
+.ride-score {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.stars-row { color: var(--gold); font-size: 11px; letter-spacing: 1px; }
+.priority-badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+.p1 { background: rgba(224,85,85,0.2); color: #f08080; border: 1px solid rgba(224,85,85,0.3); }
+.p2 { background: rgba(240,160,48,0.2); color: #f5c060; border: 1px solid rgba(240,160,48,0.3); }
+.p3 { background: rgba(91,155,213,0.2); color: #7ab4e0; border: 1px solid rgba(91,155,213,0.3); }
+.pno { background: rgba(155,127,212,0.2); color: #b8a0e0; border: 1px solid rgba(155,127,212,0.3); }
+
+.must-badge {
+  position: absolute;
+  top: 8px; right: 8px;
+  background: var(--gold);
+  color: var(--navy);
+  font-size: 9px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 100px;
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.08em;
+}
+
+/* ── COST TABLE ── */
+.cost-box {
+  background: var(--navy2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+.cost-head {
+  background: linear-gradient(135deg, rgba(232,184,75,0.1), rgba(232,184,75,0.04));
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+}
+.cost-head-title { font-family: 'Cinzel', serif; font-size: 14px; color: var(--gold); letter-spacing: 0.08em; }
+.cost-row-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  border-bottom: 1px solid rgba(232,184,75,0.08);
+  font-size: 13px;
+}
+.cost-row-item:last-child { border-bottom: none; }
+.cost-lbl { color: var(--muted); }
+.cost-val { font-family: 'DM Mono', monospace; color: var(--white); font-size: 13px; }
+.cost-total-row {
+  background: linear-gradient(135deg, rgba(232,184,75,0.12), rgba(232,184,75,0.06));
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-top: 1px solid rgba(232,184,75,0.25);
+}
+.cost-total-lbl { font-weight: 600; font-size: 14px; }
+.cost-total-val { font-family: 'DM Mono', monospace; color: var(--gold); font-size: 16px; font-weight: 500; }
+
+/* ── TIP BOX ── */
+.tip-box {
+  background: linear-gradient(135deg, rgba(76,175,125,0.1), rgba(76,175,125,0.04));
+  border: 1px solid rgba(76,175,125,0.3);
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin-bottom: 14px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.tip-box strong { color: #6dd4a0; font-weight: 500; }
+
+/* ── FOOTER ── */
+.footer {
+  text-align: center;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: rgba(244,240,232,0.3);
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.08em;
+}
+.footer-logo {
+  font-family: 'Cinzel', serif;
+  font-size: 16px;
+  color: var(--gold3);
+  margin-bottom: 6px;
+  letter-spacing: 0.15em;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero { animation: fadeUp 0.7s ease forwards; }
+.stats { animation: fadeUp 0.7s ease 0.1s forwards; opacity: 0; }
+.section { animation: fadeUp 0.7s ease 0.2s forwards; opacity: 0; }
+.rides-grid { animation: fadeUp 0.7s ease 0.3s forwards; opacity: 0; }
+
+/* ── TABS ── */
+.tab-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(6,13,36,0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0;
+}
+.tab-inner {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  gap: 0;
+}
+.tab-btn {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-family: 'Sarabun', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  padding: 14px 20px;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.tab-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transition: transform 0.2s;
+}
+.tab-btn.active { color: var(--gold); font-weight: 500; }
+.tab-btn.active::after { transform: scaleX(1); }
+.tab-btn:hover { color: var(--white); }
+
+.page { display: none; }
+.page.active { display: block; }
+
+/* ── REVIEW PAGE ── */
+.r-ride {
+  background: var(--navy2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  transition: border-color 0.2s;
+}
+.r-ride:hover { border-color: rgba(232,184,75,0.4); }
+
+.r-head {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 0;
+}
+.r-img {
+  width: 160px;
+  height: 140px;
+  object-fit: cover;
+  display: block;
+  flex-shrink: 0;
+}
+.r-img-placeholder {
+  width: 160px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  flex-shrink: 0;
+}
+.r-meta {
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.r-zone { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.15em; color: var(--gold3); margin-bottom: 6px; }
+.r-name { font-family: 'Cinzel', serif; font-size: 15px; font-weight: 600; color: var(--white); line-height: 1.3; margin-bottom: 8px; }
+.r-stars { color: var(--gold); font-size: 13px; letter-spacing: 2px; margin-bottom: 8px; }
+.r-badges { display: flex; flex-wrap: wrap; gap: 5px; }
+.r-badge {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 100px;
+  font-weight: 500;
+  font-family: 'DM Mono', monospace;
+}
+.rb-type { background: rgba(91,155,213,0.15); color: #7ab4e0; border: 1px solid rgba(91,155,213,0.25); }
+.rb-dpa  { background: rgba(240,160,48,0.15); color: #f5c060; border: 1px solid rgba(240,160,48,0.25); }
+.rb-wait { background: rgba(224,85,85,0.15); color: #f08080; border: 1px solid rgba(224,85,85,0.25); }
+.rb-free { background: rgba(76,175,125,0.15); color: #6dd4a0; border: 1px solid rgba(76,175,125,0.25); }
+.rb-dur  { background: rgba(155,127,212,0.15); color: #c0a8f0; border: 1px solid rgba(155,127,212,0.25); }
+
+.r-body { padding: 0 20px 18px; border-top: 1px solid rgba(232,184,75,0.08); }
+
+.r-quotes { margin-top: 14px; }
+.r-quote {
+  position: relative;
+  padding: 10px 14px 10px 20px;
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: var(--white);
+  line-height: 1.65;
+  border-left: 2px solid var(--gold3);
+  background: rgba(232,184,75,0.04);
+  border-radius: 0 8px 8px 0;
+}
+.r-quote-src { font-size: 11px; color: var(--muted); margin-top: 3px; font-family: 'DM Mono', monospace; }
+
+.r-tips { margin-top: 14px; }
+.r-tips-title { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold3); margin-bottom: 8px; font-family: 'DM Mono', monospace; }
+.r-tip-item {
+  display: flex;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 5px;
+}
+.r-tip-dot { color: var(--green); flex-shrink: 0; margin-top: 2px; }
+
+.r-verdict {
+  margin-top: 14px;
+  padding: 10px 14px;
+  background: linear-gradient(135deg, rgba(232,184,75,0.1), rgba(232,184,75,0.04));
+  border: 1px solid rgba(232,184,75,0.2);
+  border-radius: 10px;
+  font-size: 13px;
+  color: var(--gold2);
+  line-height: 1.6;
+}
+.r-verdict strong { color: var(--gold); }
+
+@media (max-width: 540px) {
+  .r-head { grid-template-columns: 1fr; }
+  .r-img, .r-img-placeholder { width: 100%; height: 160px; }
+  .tab-btn { padding: 12px 14px; font-size: 12px; }
+}
+
+@media (max-width: 680px) {
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .rides-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero h1 { font-size: 28px; }
+}
+@media (max-width: 480px) {
+  .rides-grid { grid-template-columns: 1fr; }
+  .t-step { grid-template-columns: 58px 28px 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="stars"></div>
+
+<!-- ── TAB NAV ── -->
+<nav class="tab-nav">
+  <div class="tab-inner">
+    <button class="tab-btn active" onclick="switchTab('plan',this)">🗓️ Execution Plan</button>
+    <button class="tab-btn" onclick="switchTab('reviews',this)">🎢 Rides & Shows</button>
+  </div>
+</nav>
+
+<div class="wrap">
+<div class="page active" id="page-plan">
+
+  <!-- ── HERO ── -->
+  <div class="hero">
+    <div class="hero-badge">🎡 Tokyo DisneySea · June 2026</div>
+    <h1>Mission Briefing<br>DisneySea</h1>
+    <p class="hero-sub">Execution plan สำหรับ 4 คน — ตั้งแต่ก้าวแรกหน้าประตูจนถึงปิดสวน</p>
+    <div class="hero-divider"></div>
+    <p style="font-size:13px;color:var(--muted);">📍 Tokyo DisneySea · Fantasy Springs + โซนเก่า · DPA Strategy</p>
+  </div>
+
+  <!-- ── STATS ── -->
+  <div class="stats">
+    <div class="stat-card">
+      <span class="stat-num">07:00</span>
+      <span class="stat-lbl">เวลาถึงประตู</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">4</span>
+      <span class="stat-lbl">คน</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">¥2K</span>
+      <span class="stat-lbl">DPA / คน / ride</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">6+</span>
+      <span class="stat-lbl">rides วันนี้</span>
+    </div>
+  </div>
+
+  <!-- ── ALERT ── -->
+  <div class="section">
+    <div class="alert-fire">
+      <div class="alert-icon">🚨</div>
+      <div>
+        <div class="alert-title">กฎสำคัญที่สุด — ทำก่อนก้าวเดิน</div>
+        <div class="alert-text">ทันทีที่สแกนตั๋วเข้าประตู <strong style="color:#f5c060;">แบ่ง 2 คน</strong> เปิดแอปพร้อมกัน คน A ซื้อ DPA Frozen · คน B ซื้อ DPA Soaring · ใช้เวลา 60 วินาที แต่ประหยัดคิวได้หลายชั่วโมง · อย่าถ่ายรูป อย่าเดิน ซื้อก่อน!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── RIDE CARDS ── -->
+  <div class="section-label">Ride Priority Guide</div>
+
+  <div class="rides-grid">
+
+    <!-- Frozen -->
+    <div class="ride-card">
+      <div class="must-badge">MUST #1</div>
+      <img class="ride-img" src="https://media1.tokyodisneyresort.jp/images/adventure/attraction/1110_main_visual_name_1.jpg?mod=20260402101123" alt="Frozen Journey" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="ride-img-placeholder" style="background:linear-gradient(135deg,#0d2a5e,#1a5fa0,#4badd4);display:none">❄️</div>
+      <div class="ride-body">
+        <div class="ride-name">Anna & Elsa's Frozen Journey</div>
+        <div class="ride-zone">FANTASY SPRINGS · ARENDELLE</div>
+        <div class="ride-desc">Boat ride 6.5 นาที · animatronics ดีที่สุดที่ Disney เคยสร้าง · คิว 140+ นาที</div>
+        <div class="ride-score">
+          <span class="stars-row">★★★★★</span>
+          <span class="priority-badge p1">DPA #1</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Soaring -->
+    <div class="ride-card">
+      <div class="must-badge">MUST #2</div>
+      <img class="ride-img" src="https://media1.tokyodisneyresort.jp/images/adventure/attraction/1005_main_visual_name_1.jpg?mod=20251208103836" alt="Soaring Fantastic Flight" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="ride-img-placeholder" style="background:linear-gradient(135deg,#0a1a35,#1a3a6e,#2d6cb0);display:none">✈️</div>
+      <div class="ride-body">
+        <div class="ride-name">Soaring: Fantastic Flight</div>
+        <div class="ride-zone">PORT DISCOVERY</div>
+        <div class="ride-desc">Flying simulator + pre-show Museum of Fantastic Flight · มีวิว Tokyo พิเศษ · คิว 130+ นาที</div>
+        <div class="ride-score">
+          <span class="stars-row">★★★★★</span>
+          <span class="priority-badge p1">DPA #2</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Peter Pan -->
+    <div class="ride-card">
+      <div class="must-badge">MUST #3</div>
+      <img class="ride-img" src="https://media1.tokyodisneyresort.jp/images/adventure/attraction/1124_main_visual_name_1.jpg?mod=20260327160442" alt="Peter Pan Never Land Adventure" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="ride-img-placeholder" style="background:linear-gradient(135deg,#0a1520,#12304a,#1a5a8a);display:none">⭐</div>
+      <div class="ride-body">
+        <div class="ride-name">Peter Pan's Never Land Adventure</div>
+        <div class="ride-zone">FANTASY SPRINGS · NEVER LAND</div>
+        <div class="ride-desc">Trackless 3D dark ride · "ยกระดับสิ่งที่ควรคาดหวังจาก Disney" · ใส่แว่น 3D</div>
+        <div class="ride-score">
+          <span class="stars-row">★★★★★</span>
+          <span class="priority-badge p2">DPA #3</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rapunzel -->
+    <div class="ride-card">
+      <img class="ride-img" src="https://media1.tokyodisneyresort.jp/images/adventure/attraction/1117_main_visual_name_1.jpg?mod=20260402101040" alt="Rapunzel Lantern Festival" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="ride-img-placeholder" style="background:linear-gradient(135deg,#2a1a05,#5a3a10,#9a6820);display:none">🏮</div>
+      <div class="ride-body">
+        <div class="ride-name">Rapunzel's Lantern Festival</div>
+        <div class="ride-zone">FANTASY SPRINGS · RAPUNZEL'S FOREST</div>
+        <div class="ride-desc">Boat ride โรแมนติก · ฉาก lantern สวยที่สุดในสวน · Rapunzel ร้องจากหอคอย</div>
+        <div class="ride-score">
+          <span class="stars-row">★★★★½</span>
+          <span class="priority-badge p2">DPA #4</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tower of Terror -->
+    <div class="ride-card">
+      <img class="ride-img" src="https://media1.tokyodisneyresort.jp/images/adventure/attraction/71_main_visual_name_1.jpg?mod=20251208104211" alt="Tower of Terror" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="ride-img-placeholder" style="background:linear-gradient(135deg,#1a0808,#3a1010,#5a1818);display:none">🏨</div>
+      <div class="ride-body">
+        <div class="ride-name">Tower of Terror</div>
+        <div class="ride-zone">AMERICAN WATERFRONT</div>
+        <div class="ride-desc">Drop tower · เรื่อง Harrison Hightower · ไม่เหมือน version อื่นในโลก · DPA มักยังเหลือ</div>
+        <div class="ride-score">
+          <span class="stars-row">★★★★½</span>
+          <span class="priority-badge p3">DPA later</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Raging Spirits -->
+    <div class="ride-card">
+      <img class="ride-img" src="https://media1.tokyodisneyresort.jp/images/adventure/attraction/371_main_visual_name_1.jpg?mod=20260122101950" alt="Raging Spirits" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="ride-img-placeholder" style="background:linear-gradient(135deg,#0d1a08,#1a380a,#2a5510);display:none">🔥</div>
+      <div class="ride-body">
+        <div class="ride-name">Raging Spirits</div>
+        <div class="ride-zone">LOST RIVER DELTA</div>
+        <div class="ride-desc">Roller coaster loop 360° · ไปช่วงเย็นคิวสั้นสุด · มี single rider line · ไม่ต้องซื้อ DPA</div>
+        <div class="ride-score">
+          <span class="stars-row">★★★☆☆</span>
+          <span class="priority-badge pno">Evening only</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── TIMELINE ── -->
+  <div class="section">
+    <div class="section-label">Execution Timeline</div>
+
+    <div class="timeline">
+
+      <!-- 06:30 -->
+      <div class="t-step">
+        <div class="t-time">06:30</div>
+        <div class="t-spine"><div class="t-dot red"></div><div class="t-line"></div></div>
+        <div class="t-body">
+          <div class="t-title">📍 เจอกันที่ Maihama Station — ครบ 4 คน</div>
+          <div class="t-sub">3 คนจาก Quintessa Ginza ออกประมาณ 05:45 · ขึ้น JR Keiyo Line ถึง Maihama ~06:25<br>เผื่อเวลารอเพื่อน <strong style="color:#f5c060;">15 นาที</strong> · นัด 06:30 แต่รอได้ถึง 06:45 ก่อนเดิน<br>ระหว่างรอ: เปิด app ทุกคน ตรวจ payment method + login ให้พร้อม</div>
+          <div class="tags"><span class="tag tag-info">🚇 JR Keiyo Line ~40 นาที</span><span class="tag tag-warn">Buffer 15 นาที</span></div>
+        </div>
+      </div>
+
+      <!-- 07:00 -->
+      <div class="t-step">
+        <div class="t-time">07:00</div>
+        <div class="t-spine"><div class="t-dot red"></div><div class="t-line"></div></div>
+        <div class="t-body">
+          <div class="t-title">🚨 เดินถึงประตู DisneySea — เข้าคิว</div>
+          <div class="t-sub">จาก Maihama Station เดิน ~10–15 นาที · Park เปิดอย่างเป็นทางการ <strong style="color:#f5c060;">09:00 น.</strong> แต่ประตูมักเปิดเร็วกว่า 15–30 นาที (~08:30–08:45)<br>จากรีวิวจริง: คนญี่ปุ่นปูเสื่อรออยู่แล้วตอน 07:30 · วันธรรมดา (พฤหัส/ศุกร์) คนน้อยกว่าวันหยุดมาก<br>⚠️ อินเทอร์เน็ตที่ประตูกวนมาก — ต้องเตรียม app พร้อมก่อนมาถึง!</div>
+          <div class="tags"><span class="tag tag-warn">⚠️ เตรียม app ก่อนถึง</span><span class="tag tag-info">🗓️ วันธรรมดา = คิวสั้นกว่า</span></div>
+        </div>
+      </div>
+
+      <!-- 08:30 -->
+      <div class="t-step">
+        <div class="t-time">08:30</div>
+        <div class="t-spine"><div class="t-dot amber"></div><div class="t-line"></div></div>
+        <div class="t-body">
+          <div class="t-title">🔴 STEP 1 — ซื้อ DPA Frozen ทันทีที่ประตูเปิด</div>
+          <div class="t-sub">ประตูเปิด ~08:30–08:45 · คน A เปิดแอป → Anna & Elsa's Frozen Journey → ¥2,000 × 4 คน = ¥8,000<br>เลือก time slot เร็วที่สุด · <strong style="color:#f5c060;">อย่าเดิน อย่าถ่ายรูป ซื้อก่อน!</strong></div>
+          <div class="tags"><span class="tag tag-dpa">💳 DPA #1 · ¥8,000</span><span class="tag tag-warn">ขายหมดใน 30 นาที</span></div>
+        </div>
+      </div>
+
+      <!-- 08:31 -->
+      <div class="t-step">
+        <div class="t-time">08:31</div>
+        <div class="t-spine"><div class="t-dot amber"></div><div class="t-line"></div></div>
+        <div class="t-body">
+          <div class="t-title">🔴 STEP 2 — คน B ซื้อ DPA Soaring พร้อมกัน</div>
+          <div class="t-sub">ซื้อ DPA ได้คนละตัวพร้อมกัน → แบ่งหน้าที่ 2 คน ซื้อคนละ ride<br>Soaring: Fantastic Flight · ¥2,000 × 4 = ¥8,000</div>
+          <div class="tags"><span class="tag tag-dpa">💳 DPA #2 · ¥8,000</span></div>
+        </div>
+      </div>
+
+      <!-- 08:35 -->
+      <div class="t-step">
+        <div class="t-time">08:35</div>
+        <div class="t-spine"><div class="t-dot green"></div><div class="t-line"></div></div>
+        <div class="t-body">
+          <div class="t-title">วิ่งตรงไป Fantasy Springs</div>
+          <div class="t-sub">เดิน ~15–20 นาที จากทางเข้าหลัก · Peter Pan standby เปิดทันที<br>ถ้าคิว Peter Pan &lt;60 นาที → เข้าคิว standby เลย ไม่ต้องซื้อ DPA</div>
+          <div class="tags"><span class="tag tag-info">🗺️ เป้าหมายแรก</span></div>
+        </div>
+      </div>
+
+      <!-- 08:50 -->
+      <div class="t-step">
+        <div class="t-time">08:50</div>
+        <div class="t-spine"><div class="t-dot purple"></div><div class="t-line"></div></div>
+        <div class="t-body">
+          <div class="t-title">⭐ Peter Pan's Never Land Adventure</div>
+          <div class="t-sub">เข้าคิว standby (เช้าคิวสั้นสุด ~30–45 นาที) · รับแว่น 3D ก่อนขึ้น<br>ถ้าคิวเกิน 90 นาที → ซื้อ DPA Peter Pan แทน</div>
+          <div class="tags"><span class="tag tag-free">Standby ก่อน</span><span class="tag tag-dpa">หรือ DPA #3 ¥8,000</span></div>
+        </div>
+      </div>
+
+      <!-- 09:45 -->
+      <div class="t-step">
+        <div class="t-time">09:45</div>
+        <div class="t-spine"><div class="t-dot blue"></div><div class="t-line"></div></div>
+        <div class="t-body">
+          <div class="t-title">ซื้อ DPA ตัวต่อไป (ปลดล็อคหลังจากซื้อแรกผ่านไปแล้ว)</div>
+          <div class="t-sub">เลือก Peter Pan DPA ถ้ายังไม่ได้ขึ้น · หรือ Rapunzel's Lantern Festival<br>→ ซื้อในแอประหว่างรอคิวได้เลย</div>
+          <div class="tags"><span class="tag tag-dpa">💳 DPA #3 · ¥8,000</span></div>
+        </div>
+      </div>
+
+      <!-- 10:30 -->
+      <div class="t-step">
+        <div class="t-time">10:30</div>
+        <div class="t-spine"><div class="t-dot teal"></div><div class="t-line"></div></div>
+        <div class="t-body">
+          <div class="t-title">❄️ Anna & Elsa's Frozen Journey (DPA return time)</div>
+          <div class="t-sub">Arendelle zone · คิว DPA ~5–10 นาที · show building ใหญ่ที่สุดในสวน<br>💡 มี single rider line ด้วย ถ้าอยากขึ้น 2 รอบ</div>
+          <div class="tags"><span class="tag tag-dpa">✅ ใช้ DPA Frozen</span></div>
+        </div>
+      </div>
+
+      <!-- 11:30 -->
+      <div class="t-step">
+        <div class="t-time">11:30</div>
+        <div class="t-spine"><div class="t-dot teal"></div><div class="t-line"></div></div>
+        <div class="t-body">
+          <div class="t-title">🏮 Rapunzel's Lantern Festival</div>
+          <div class="t-sub">Standby หรือ DPA · คิวช่วงนี้ยาวขึ้นแล้ว ซื้อ DPA ถ้าเกิน 60 นาที<br>Rapunzel ร้องเพลงในหอคอย → ถ่ายรูปจากด้านนอกได้ฟรี!</div>
+          <div class="tags"><span class="tag tag-free">Standby หรือ</span><span class="tag tag-dpa">DPA #4 · ¥8,000</span></div>
+        </div>
+      </div>
+
+      <!-- 12:30 -->
+      <div class="t-step">
+        <div class="t-time">12:30</div>
+        <div class="t-spine"><div class="t-dot green"></div><div class="t-line"></div></div>
+        <div class="t-body">
+          <div class="t-title">🍔 กินข้าวกลางวัน</div>
+          <div class="t-sub">Snuggly Duckling Tavern (Fantasy Springs) · Duckling Dream Burger<br>หรือ Oaken's Yoo-Hoo Bread ขนมรสยี่หร่า+เนื้อ ¥300 ระหว่างเดิน</div>
+        </div>
+      </div>
+
+      <!-- 13:30 -->
+      <div class="t-step">
+        <div class="t-time">13:30</div>
+        <div class="t-spine"><div class="t-dot amber"></div><div class="t-line"></div></div>
+        <div class="t-body">
+          <div class="t-title">✈️ Soaring: Fantastic Flight (DPA return time)</div>
+          <div class="t-sub">Port Discovery · pre-show Museum of Fantastic Flight อย่าข้าม!<br>นั่งแล้วมีวิว Tokyo พิเศษ · gentle simulator ไม่เวียนหัว</div>
+          <div class="tags"><span class="tag tag-dpa">✅ ใช้ DPA Soaring</span></div>
+        </div>
+      </div>
+
+      <!-- 14:30 -->
+      <div class="t-step">
+        <div class="t-time">14:30</div>
+        <div class="t-spine"><div class="t-dot red"></div><div class="t-line"></div></div>
+        <div class="t-body">
+          <div class="t-title">🏨 Tower of Terror</div>
+          <div class="t-sub">American Waterfront · เรื่อง Harrison Hightower ต่างจาก version อื่นทั้งหมด<br>วิวจากยอด Tower สวยมาก · DPA มักยังเหลือช่วงบ่าย</div>
+          <div class="tags"><span class="tag tag-free">Standby หรือ</span><span class="tag tag-dpa">DPA บ่าย</span></div>
+        </div>
+      </div>
+
+      <!-- 15:30 -->
+      <div class="t-step">
+        <div class="t-time">15:30</div>
+        <div class="t-spine"><div class="t-dot gray"></div><div class="t-line"></div></div>
+        <div class="t-body">
+          <div class="t-title">Indiana Jones + Aquatopia + เดินเล่น</div>
+          <div class="t-sub">Indy มี single rider line · Aquatopia trackless สนุก · คิวสั้นช่วงบ่าย<br>20,000 Leagues Under the Sea ถ้ายังมีแรง</div>
+          <div class="tags"><span class="tag tag-free">Single Rider / Standby</span></div>
+        </div>
+      </div>
+
+      <!-- 17:30 -->
+      <div class="t-step">
+        <div class="t-time">17:30</div>
+        <div class="t-spine"><div class="t-dot red"></div><div class="t-line"></div></div>
+        <div class="t-body">
+          <div class="t-title">🔥 Raging Spirits — ช่วงนี้คิวสั้นที่สุด</div>
+          <div class="t-sub">Single rider line ถ้าไม่แคร์นั่งแยก · บรรยากาศกลางคืนดีกว่ากลางวันมาก<br>⚠️ อย่าซื้อ DPA — ride สั้น ไม่คุ้ม</div>
+          <div class="tags"><span class="tag tag-free">🌆 Single Rider ตอนเย็น</span></div>
+        </div>
+      </div>
+
+      <!-- 18:00 -->
+      <div class="t-step">
+        <div class="t-time">18:00</div>
+        <div class="t-spine"><div class="t-dot green"></div><div class="t-line"></div></div>
+        <div class="t-body">
+          <div class="t-title">🍜 กินข้าวเย็นแถว Mediterranean Harbor</div>
+          <div class="t-sub">เลือกร้านใกล้ harbor เพื่อสะดวกจับที่ดู Believe! · หรือซื้อ food จาก counter แล้วกินริมน้ำ</div>
+        </div>
+      </div>
+
+      <!-- 18:15 -->
+      <div class="t-step">
+        <div class="t-time">18:15</div>
+        <div class="t-spine"><div class="t-dot purple"></div><div class="t-line"></div></div>
+        <div class="t-body">
+          <div class="t-title">🌟 จับที่ดู Believe! Sea of Dreams</div>
+          <div class="t-sub">ไปก่อน show อย่างน้อย 1 ชั่วโมง · free area ฝั่งตรงข้าม MiraCosta<br>ถ้าซื้อ DPA ¥2,500 → เข้าพื้นที่ Piazza Topolino / Lido Isle ริมน้ำแถวหน้า</div>
+          <div class="tags"><span class="tag tag-free">จับที่ฟรี</span><span class="tag tag-dpa">หรือ DPA ¥10,000 (4 คน)</span></div>
+        </div>
+      </div>
+
+      <!-- 19:15 -->
+      <div class="t-step">
+        <div class="t-time">19:15</div>
+        <div class="t-spine"><div class="t-dot purple"></div><div class="t-line"></div></div>
+        <div class="t-body">
+          <div class="t-title">✨ Believe! Sea of Dreams — 30 นาที</div>
+          <div class="t-sub">เรือขนาดใหญ่ · laser · pyrotechnics · projection mapping บน MiraCosta · ภูเขาไฟพ่นไฟ<br>เพลงโดย MISIA · ตัวละคร: Peter Pan, Moana, Rapunzel, Elsa, Aladdin และอีกมาก</div>
+          <div class="tags"><span class="tag tag-warn">🔥 ห้ามพลาดเด็ดขาด</span></div>
+        </div>
+      </div>
+
+      <!-- 20:00 -->
+      <div class="t-step">
+        <div class="t-time">20:00</div>
+        <div class="t-spine"><div class="t-dot green"></div><div class="t-line"></div></div>
+        <div class="t-body">
+          <div class="t-title">🛍️ ของที่ระลึก + Popcorn สุดท้าย</div>
+          <div class="t-sub">ร้านใน Fantasy Springs คิวสั้นลงมากช่วงนี้ · Peter Pan popcorn รสเนื้อย่าง<br>Believe! merch: Mickey & Minnie บนเรือทองคำ — ที่ Emporio at Mediterranean</div>
+        </div>
+      </div>
+
+      <!-- 21:15 -->
+      <div class="t-step">
+        <div class="t-time">21:15</div>
+        <div class="t-spine"><div class="t-dot gray"></div><div class="t-line"></div></div>
+        <div class="t-body">
+          <div class="t-title">🎆 Sky Full of Colors (ถ้าไม่ยกเลิก)</div>
+          <div class="t-sub">ดอกไม้ไฟ 5 นาที · เช็ค app ว่ายังมีหรือเปล่า (ยกเลิกบ่อยเพราะลมแรง)<br>มองเห็นได้จากทั่วสวน · ดูแล้วออกได้เลย park ปิด ~21:00</div>
+          <div class="tags"><span class="tag tag-free">Bonus ถ้ามีแรง</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── COST ── -->
+  <div class="section">
+    <div class="section-label">DPA Budget (4 คน · Worst Case)</div>
+
+    <div class="cost-box">
+      <div class="cost-head">
+        <div class="cost-head-title">Disney Premier Access · ¥2,000 / คน / ride</div>
+      </div>
+      <div class="cost-row-item">
+        <span class="cost-lbl">❄️ Frozen Journey × 4 คน</span>
+        <span class="cost-val">¥8,000</span>
+      </div>
+      <div class="cost-row-item">
+        <span class="cost-lbl">✈️ Soaring × 4 คน</span>
+        <span class="cost-val">¥8,000</span>
+      </div>
+      <div class="cost-row-item">
+        <span class="cost-lbl">⭐ Peter Pan × 4 คน (ถ้าซื้อ)</span>
+        <span class="cost-val">¥8,000</span>
+      </div>
+      <div class="cost-row-item">
+        <span class="cost-lbl">🏮 Rapunzel × 4 คน (ถ้าซื้อ)</span>
+        <span class="cost-val">¥8,000</span>
+      </div>
+      <div class="cost-total-row">
+        <span class="cost-total-lbl">รวม DPA ทั้งหมด (4 rides)</span>
+        <span class="cost-total-val">¥32,000 · ~7,500 THB</span>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      💡 <strong>แนะนำ:</strong> ซื้อแค่ Frozen + Soaring ก่อน (¥16,000) · Peter Pan และ Rapunzel มักคิวสั้นกว่า ลอง standby ก่อน ถ้าเกิน 60 นาทีค่อยซื้อ DPA · วันธรรมดาคิวสั้นกว่าวันเสาร์อาทิตย์มาก
+    </div>
+    <div class="tip-box">
+      📱 <strong>เตรียมก่อนนอน:</strong> Login Tokyo Disney Resort app ครบ 4 เครื่อง · เพิ่ม payment method · เช็ค park hours ว่าพรุ่งนี้เปิดกี่โมง · ชาร์จแบตเต็ม · อินเทอร์เน็ตที่ประตูสวนกวนมาก ต้องพร้อมก่อนถึง
+    </div>
+    <div class="tip-box">
+      🚇 <strong>เดินทาง (3 คนจาก Quintessa):</strong> ออกจากโรงแรม ~05:45 · Higashi-Ginza → Hatchobori → JR Keiyo Line → Maihama รวม ~40 นาที · ถึง ~06:25 · รอเพื่อนที่ exit ฝั่ง Disney แล้วเดินไปประตูด้วยกัน ~10 นาที
+    </div>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <div class="footer">
+    <div class="footer-logo">DisneySea · June 2026</div>
+    <div>Japan Trip 2026 · 4 travelers · Mission Briefing</div>
+  </div>
+
+</div><!-- /page-plan -->
+
+<!-- ══════════════════════════════════════
+     PAGE 2 — RIDES & REVIEWS
+══════════════════════════════════════ -->
+<div class="page" id="page-reviews">
+
+  <div class="hero" style="padding-bottom:32px;">
+    <div class="hero-badge">🎢 Ride Guide · Real Reviews</div>
+    <h1>Rides & Reviews</h1>
+    <p class="hero-sub">สรุปรีวิวจากคนที่ไปมาแล้ว + คำแนะนำเฉพาะทาง ครบทุกเครื่องเล่นและ shows</p>
+    <div class="hero-divider"></div>
+  </div>
+
+  <!-- ── FROZEN ── -->
+  <div class="r-ride">
+    <div class="r-head">
+      <img class="r-img" src="https://media1.tokyodisneyresort.jp/images/adventure/attraction/1110_main_visual_name_1.jpg?mod=20260402101123" alt="Frozen Journey" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="r-img-placeholder" style="background:linear-gradient(135deg,#0d2a5e,#1a5fa0,#4badd4);display:none">❄️</div>
+      <div class="r-meta">
+        <div class="r-zone">FANTASY SPRINGS · ARENDELLE</div>
+        <div class="r-name">Anna & Elsa's Frozen Journey</div>
+        <div class="r-stars">★★★★★</div>
+        <div class="r-badges">
+          <span class="r-badge rb-type">Boat Ride</span>
+          <span class="r-badge rb-dur">6.5 นาที</span>
+          <span class="r-badge rb-dpa">DPA #1 · ¥2,000</span>
+          <span class="r-badge rb-wait">คิว 140+ นาที</span>
+        </div>
+      </div>
+    </div>
+    <div class="r-body">
+      <div class="r-quotes">
+        <div class="r-quote">
+          "Flawless — a modern masterpiece of Imagineering. ล่องเรือ 6.5 นาทีผ่านฉากอย่างไม่ขาดสาย มีดนตรีต้นฉบับ animatronics ที่สมจริงที่สุดที่ Disney เคยสร้าง และ special effect ที่ทำให้อยากถาม 'ทำได้ยังไง?'"
+          <div class="r-quote-src">— Disney Tourist Blog (media preview)</div>
+        </div>
+        <div class="r-quote">
+          "เหมือนซิมโฟนี — ทุกองค์ประกอบมาบรรจบกันอย่างสมบูรณ์แบบ animatronics คือผลงานที่ดีที่สุดที่ Imagineering เคยทำ"
+          <div class="r-quote-src">— Wild Ride Reviews</div>
+        </div>
+        <div class="r-quote">
+          "Show building ใหญ่กว่า 95,000 ตร.ฟุต (ใหญ่กว่า Indiana Jones Disneyland เกือบ 2 เท่า!) และ Imagineers ใช้พื้นที่ทุกตารางนิ้ว ฉากแต่ละฉากใหญ่โตกว่า Disney rides อื่นๆ แทบทั้งหมด"
+          <div class="r-quote-src">— TouringPlans.com</div>
+        </div>
+        <div class="r-quote">
+          "แต่ละรอบที่ขึ้นจะเห็น detail ใหม่เพิ่มขึ้นเรื่อยๆ ride นี้ชวนให้ขึ้นซ้ำ"
+          <div class="r-quote-src">— AllEars.net</div>
+        </div>
+      </div>
+      <div class="r-tips">
+        <div class="r-tips-title">💡 คำแนะนำ</div>
+        <div class="r-tip-item"><span class="r-tip-dot">▸</span><span>ซื้อ DPA ทันทีที่เข้าประตู ก่อนก้าวแรกเดิน — ขายหมดภายใน 30 นาที</span></div>
+        <div class="r-tip-item"><span class="r-tip-dot">▸</span><span>มี Single Rider Line — ถ้าไม่แคร์นั่งแยก ใช้เส้นนี้ขึ้นรอบ 2 ได้เลย</span></div>
+        <div class="r-tip-item"><span class="r-tip-dot">▸</span><span>คิว standby ยาวถึง 140 นาที แม้วันธรรมดา — DPA คุ้มมากที่สุดใน 6 rides</span></div>
+      </div>
+      <div class="r-verdict">🏆 <strong>Verdict:</strong> ride ที่ต้องขึ้นมากที่สุดในสวน ซื้อ DPA ก่อนทุกอย่าง ถ้าทำได้อย่างเดียวในวันนี้ ทำอันนี้</div>
+    </div>
+  </div>
+
+  <!-- ── PETER PAN ── -->
+  <div class="r-ride">
+    <div class="r-head">
+      <img class="r-img" src="https://media1.tokyodisneyresort.jp/images/adventure/attraction/1124_main_visual_name_1.jpg?mod=20260327160442" alt="Peter Pan" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="r-img-placeholder" style="background:linear-gradient(135deg,#0a1520,#12304a,#1a5a8a);display:none">⭐</div>
+      <div class="r-meta">
+        <div class="r-zone">FANTASY SPRINGS · NEVER LAND</div>
+        <div class="r-name">Peter Pan's Never Land Adventure</div>
+        <div class="r-stars">★★★★★</div>
+        <div class="r-badges">
+          <span class="r-badge rb-type">Trackless 3D Dark Ride</span>
+          <span class="r-badge rb-dpa">DPA #3 · ¥2,000</span>
+          <span class="r-badge rb-wait">คิว 90-120 นาที</span>
+        </div>
+      </div>
+    </div>
+    <div class="r-body">
+      <div class="r-quotes">
+        <div class="r-quote">
+          "Spectacular — ride นี้ยกระดับสิ่งที่ผู้คนควรคาดหวังจาก Disney rides การใช้ fluorescent paint บน props จริงๆ ร่วมกับระบบ 3D ทำให้ผลออกมาน่าทึ่งมาก"
+          <div class="r-quote-src">— Disney Tourist Blog</div>
+        </div>
+        <div class="r-quote">
+          "'ฉันไม่เคยเห็น 3D แบบนี้มาก่อน' — เรือไม้ที่นั่งแม้อยู่บนพื้น แต่รู้สึกเหมือนลอยอยู่บนน้ำ · trackless ทำให้เส้นทางไม่ซ้ำกันทุกรอบ"
+          <div class="r-quote-src">— AllEars.net (media preview)</div>
+        </div>
+        <div class="r-quote">
+          "มี Easter egg — ตอน Lost Boys ทำของกระเจิง จะมีตะเกียงของ Genie ลอยออกมาหา! คิวทางเข้า themed ดีมากตั้งแต่ต้น เหมาะเป็น mood setter"
+          <div class="r-quote-src">— Wandering in Disney</div>
+        </div>
+        <div class="r-quote">
+          "ทำให้ทุกคนกลับมาเป็นเด็กได้อีกครั้ง — ความสุขที่ ride มอบให้ทำให้ลืมทุกอย่าง ทั้งครอบครัวชอบมากและขอขึ้นรอบ 2 ทันที"
+          <div class="r-quote-src">— Wild Ride Reviews</div>
+        </div>
+      </div>
+      <div class="r-tips">
+        <div class="r-tips-title">💡 คำแนะนำ</div>
+        <div class="r-tip-item"><span class="r-tip-dot">▸</span><span>รับแว่น 3D ก่อนขึ้นทุกครั้ง — ไม่มีแว่น ประสบการณ์ลดลงมาก</span></div>
+        <div class="r-tip-item"><span class="r-tip-dot">▸</span><span>คนที่ปกติเมา simulator มีโอกาสรู้สึกไม่ดี — แต่ส่วนใหญ่ผ่านได้ อย่าเพิ่งกังวล</span></div>
+        <div class="r-tip-item"><span class="r-tip-dot">▸</span><span>ไปถึง Fantasy Springs เช้าสุด → เข้าคิว standby ก่อน (30-45 นาทีตอนเช้า) แทนที่จะซื้อ DPA</span></div>
+        <div class="r-tip-item"><span class="r-tip-dot">▸</span><span>มี Single Rider Line เช่นกัน — ดีมากสำหรับรอบ 2</span></div>
+      </div>
+      <div class="r-verdict">🥈 <strong>Verdict:</strong> ดีที่สุดใน Fantasy Springs สำหรับหลายคน ขึ้นเช้าตอนคิวยังสั้น อาจไม่ต้องซื้อ DPA เลย</div>
+    </div>
+  </div>
+
+  <!-- ── RAPUNZEL ── -->
+  <div class="r-ride">
+    <div class="r-head">
+      <img class="r-img" src="https://media1.tokyodisneyresort.jp/images/adventure/attraction/1117_main_visual_name_1.jpg?mod=20260402101040" alt="Rapunzel" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="r-img-placeholder" style="background:linear-gradient(135deg,#2a1a05,#5a3a10,#9a6820);display:none">🏮</div>
+      <div class="r-meta">
+        <div class="r-zone">FANTASY SPRINGS · RAPUNZEL'S FOREST</div>
+        <div class="r-name">Rapunzel's Lantern Festival</div>
+        <div class="r-stars">★★★★½</div>
+        <div class="r-badges">
+          <span class="r-badge rb-type">Slow Boat Ride</span>
+          <span class="r-badge rb-dpa">DPA #4 · ¥2,000</span>
+          <span class="r-badge rb-wait">คิว 60-90 นาที</span>
+        </div>
+      </div>
+    </div>
+    <div class="r-body">
+      <div class="r-quotes">
+        <div class="r-quote">
+          "ฉาก lantern คือหนึ่งในช่วงเวลาที่งดงามที่สุดในสวนสนุก Disney ทั่วโลก — ล่องเรือเบาๆ ผ่านราชอาณาจักรของ Rapunzel ตั้งแต่หอคอยจนถึงฉาก lantern ที่จบสวยมาก"
+          <div class="r-quote-src">— Tokyo Disney Day (90%)</div>
+        </div>
+        <div class="r-quote">
+          "Rapunzel ร้องเพลงจากในหอคอยจริงๆ — ได้ยินจากด้านนอกด้วย ตอนเห็นครั้งแรกน้ำตาไหลเลย มันสวยมากจนบอกไม่ถูก"
+          <div class="r-quote-src">— Disney Everything TH (เข้าวันที่ 2 หลังเปิด)</div>
+        </div>
+        <div class="r-quote">
+          "สั้นเกินไป — ทุกคนอยากให้ ride ยาวกว่านี้ นั่นแหละคือคำชมที่ดีที่สุด เพราะแสดงว่ามันดีมากพอที่จะอยากอยู่ต่อ"
+          <div class="r-quote-src">— Tokyo Disney Day</div>
+        </div>
+      </div>
+      <div class="r-tips">
+        <div class="r-tips-title">💡 คำแนะนำ</div>
+        <div class="r-tip-item"><span class="r-tip-dot">▸</span><span>หอคอย Rapunzel มองเห็นและได้ยินเพลงจากทั่ว Fantasy Springs — ถ่ายรูปได้ฟรีจากนอกคิว!</span></div>
+        <div class="r-tip-item"><span class="r-tip-dot">▸</span><span>เหมาะสำหรับคู่รัก / สายโรแมนติก — ฉากสวยที่สุดใน 4 rides ของ Fantasy Springs</span></div>
+        <div class="r-tip-item"><span class="r-tip-dot">▸</span><span>ลอง standby ก่อน ถ้าคิวเกิน 60 นาทีค่อยซื้อ DPA — คิวสั้นกว่า Frozen และ Peter Pan</span></div>
+      </div>
+      <div class="r-verdict">🏮 <strong>Verdict:</strong> สั้นที่สุดใน 4 rides แต่สวยที่สุด ถ้างบ DPA จำกัด ลอง standby ก่อน</div>
+    </div>
+  </div>
+
+  <!-- ── SOARING ── -->
+  <div class="r-ride">
+    <div class="r-head">
+      <img class="r-img" src="https://media1.tokyodisneyresort.jp/images/adventure/attraction/1005_main_visual_name_1.jpg?mod=20251208103836" alt="Soaring" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="r-img-placeholder" style="background:linear-gradient(135deg,#0a1a35,#1a3a6e,#2d6cb0);display:none">✈️</div>
+      <div class="r-meta">
+        <div class="r-zone">MEDITERRANEAN HARBOR · PORT DISCOVERY</div>
+        <div class="r-name">Soaring: Fantastic Flight</div>
+        <div class="r-stars">★★★★★</div>
+        <div class="r-badges">
+          <span class="r-badge rb-type">Flying Simulator</span>
+          <span class="r-badge rb-dur">5 นาที</span>
+          <span class="r-badge rb-dpa">DPA #2 · ¥2,000</span>
+          <span class="r-badge rb-wait">คิว 130+ นาที</span>
+        </div>
+      </div>
+    </div>
+    <div class="r-body">
+      <div class="r-quotes">
+        <div class="r-quote">
+          "version DisneySea มี pre-show Museum of Fantastic Flight ไม่มีที่ไหนในโลก — พาทัวร์ประวัติความฝันของมนุษย์ที่อยากบิน ทำให้ตื่นเต้นก่อนขึ้นจริงอีกเยอะ"
+          <div class="r-quote-src">— Never Ending Voyage</div>
+        </div>
+        <div class="r-quote">
+          "มีฉาก Tokyo พิเศษที่ไม่มีใน Soaring version อื่นทั่วโลก · ride ตัวเองนุ่มมาก ไม่มีอาการเวียนหัว แม้คนที่ไม่ชอบ simulator ก็ผ่านได้"
+          <div class="r-quote-src">— Never Ending Voyage</div>
+        </div>
+        <div class="r-quote">
+          "เป็น ride ที่ popular มากที่สุดก่อน Fantasy Springs จะเปิด คิวเคยยาวถึง 130 นาที — ยังคงเป็นอันดับต้นๆ ที่ต้องไป"
+          <div class="r-quote-src">— Wandering in Disney (Ranking #9)</div>
+        </div>
+        <div class="r-quote">
+          "วันที่ไป (ศุกร์ พฤศจิกายน) DPA Soaring ขายหมดก่อน 09:30 — ต้องซื้อตอนเข้าสวนพร้อมกับ DPA Frozen ถึงจะได้"
+          <div class="r-quote-src">— TripAdvisor review, Nov 2025</div>
+        </div>
+      </div>
+      <div class="r-tips">
+        <div class="r-tips-title">💡 คำแนะนำ</div>
+        <div class="r-tip-item"><span class="r-tip-dot">▸</span><span>ซื้อ DPA พร้อมกับ Frozen ทันทีที่เข้าสวน — คน B ซื้อ Soaring ขณะ คน A ซื้อ Frozen</span></div>
+        <div class="r-tip-item"><span class="r-tip-dot">▸</span><span>นั่งแถวหน้าสุดได้ experience ดีที่สุด — แจ้ง Cast Member ถ้าอยากนั่งหน้า</span></div>
+        <div class="r-tip-item"><span class="r-tip-dot">▸</span><span>อย่าข้าม pre-show! เดินเข้า Museum of Fantastic Flight และดูนิทรรศการก่อน ใช้เวลาประมาณ 10 นาที</span></div>
+      </div>
+      <div class="r-verdict">✈️ <strong>Verdict:</strong> DPA ตัวที่ 2 ที่ต้องซื้อ ห้ามพลาด pre-show ที่ไม่มีที่ไหนในโลก</div>
+    </div>
+  </div>
+
+  <!-- ── TOWER ── -->
+  <div class="r-ride">
+    <div class="r-head">
+      <img class="r-img" src="https://media1.tokyodisneyresort.jp/images/adventure/attraction/71_main_visual_name_1.jpg?mod=20251208104211" alt="Tower of Terror" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="r-img-placeholder" style="background:linear-gradient(135deg,#1a0808,#3a1010,#5a1818);display:none">🏨</div>
+      <div class="r-meta">
+        <div class="r-zone">AMERICAN WATERFRONT</div>
+        <div class="r-name">Tower of Terror</div>
+        <div class="r-stars">★★★★½</div>
+        <div class="r-badges">
+          <span class="r-badge rb-type">Drop Tower</span>
+          <span class="r-badge rb-dur">2 นาที</span>
+          <span class="r-badge rb-dpa">DPA ช่วงบ่าย</span>
+          <span class="r-badge rb-free">คิวสั้นกว่า Fantasy Springs</span>
+        </div>
+      </div>
+    </div>
+    <div class="r-body">
+      <div class="r-quotes">
+        <div class="r-quote">
+          "เรื่องราวไม่มีอะไรเกี่ยวกับ Twilight Zone เลย — เป็น original story ของ Harrison Hightower เศรษฐีโลภที่สะสม artifact จนโดนสาป Shikiri version นี้มีเรื่องราวดีที่สุดในบรรดา Tower of Terror ทั่วโลก"
+          <div class="r-quote-src">— Incredible Coasters</div>
+        </div>
+        <div class="r-quote">
+          "ขึ้นไปถึงยอดจะเห็นวิว Tokyo DisneySea แบบ panorama ทั้งสวน — ช็อตนั้นสวยมากก่อนดร็อปลง"
+          <div class="r-quote-src">— Incredible Coasters</div>
+        </div>
+        <div class="r-quote">
+          "DPA Tower of Terror มักยังเหลืออยู่แม้ตอนสาย เพราะทุกคนรีบแย่ง Frozen กับ Soaring ก่อน — ซื้อได้ช่วงบ่ายถ้าตัวอื่นหมดแล้ว"
+          <div class="r-quote-src">— TripAdvisor review</div>
+        </div>
+      </div>
+      <div class="r-tips">
+        <div class="r-tips-title">💡 คำแนะนำ</div>
+        <div class="r-tip-item"><span class="r-tip-dot">▸</span><span>เรื่องราวทั้งหมดเป็นภาษาญี่ปุ่น แต่สื่อผ่านภาพได้ดีมาก — ไม่ต้องกังวลเรื่องภาษา</span></div>
+        <div class="r-tip-item"><span class="r-tip-dot">▸</span><span>ขึ้นช่วงบ่าย 14:00-15:00 — คิวสั้นกว่าเช้า และ DPA มักยังเหลือ</span></div>
+        <div class="r-tip-item"><span class="r-tip-dot">▸</span><span>ความสูงขั้นต่ำ 102 cm · ห้ามขึ้นถ้าความดันโลหิตสูง หรือมีปัญหาหัวใจ</span></div>
+      </div>
+      <div class="r-verdict">🏨 <strong>Verdict:</strong> เรื่องดีที่สุดในบรรดา Tower of Terror ทุก version แต่ airtime สั้นกว่า Florida ซื้อ DPA ช่วงบ่ายได้เลย</div>
+    </div>
+  </div>
+
+  <!-- ── RAGING SPIRITS ── -->
+  <div class="r-ride">
+    <div class="r-head">
+      <img class="r-img" src="https://media1.tokyodisneyresort.jp/images/adventure/attraction/371_main_visual_name_1.jpg?mod=20260122101950" alt="Raging Spirits" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="r-img-placeholder" style="background:linear-gradient(135deg,#0d1a08,#1a380a,#2a5510);display:none">🔥</div>
+      <div class="r-meta">
+        <div class="r-zone">LOST RIVER DELTA</div>
+        <div class="r-name">Raging Spirits</div>
+        <div class="r-stars">★★★☆☆</div>
+        <div class="r-badges">
+          <span class="r-badge rb-type">Roller Coaster · 360° Loop</span>
+          <span class="r-badge rb-dur">1.5 นาที</span>
+          <span class="r-badge rb-free">Single Rider ✓</span>
+          <span class="r-badge rb-free">ไม่ต้อง DPA</span>
+        </div>
+      </div>
+    </div>
+    <div class="r-body">
+      <div class="r-quotes">
+        <div class="r-quote">
+          "น่าผิดหวังที่สุดใน DisneySea — facade สวยมาก มีไฟพ่น น้ำ สร้าง hype ไว้สูงมาก แต่พอขึ้นจริงความเร็วไม่ถึง แม้มีห่วง 360° แต่ไม่รู้สึก thrill เลย"
+          <div class="r-quote-src">— Wandering in Disney (อันดับ 19 จาก 20)</div>
+        </div>
+        <div class="r-quote">
+          "เป็น roller coaster ที่ loop สำหรับผู้ใหญ่หนึ่งเดียวใน DisneySea · มีไฟพ่นและน้ำที่ impressive มาก แต่ ride มันสั้นและไม่ค่อย thrill เท่าที่ควร"
+          <div class="r-quote-src">— Never Ending Voyage</div>
+        </div>
+        <div class="r-quote">
+          "ตอนกลางคืนบรรยากาศดีกว่ากลางวันมาก — ไฟและน้ำดูดีในความมืด และคิวสั้นลงมากหลัง 17:00"
+          <div class="r-quote-src">— Wandering in Disney</div>
+        </div>
+      </div>
+      <div class="r-tips">
+        <div class="r-tips-title">💡 คำแนะนำ</div>
+        <div class="r-tip-item"><span class="r-tip-dot">▸</span><span>ไปช่วง 17:00-18:00 — คิวสั้นสุดในทั้งวัน และบรรยากาศกลางคืนดีกว่า</span></div>
+        <div class="r-tip-item"><span class="r-tip-dot">▸</span><span>ใช้ Single Rider Line — ถ้าไม่แคร์นั่งแยก จะประหยัดเวลาได้มากกว่าครึ่ง</span></div>
+        <div class="r-tip-item"><span class="r-tip-dot">▸</span><span>ความสูงขั้นต่ำ 117 cm (สูงกว่า Tower of Terror) · ห้ามเกิน 195 cm</span></div>
+        <div class="r-tip-item"><span class="r-tip-dot">▸</span><span><strong style="color:#f08080;">อย่าซื้อ DPA</strong> — ride สั้น 1.5 นาที ไม่คุ้มกับ ¥2,000/คน</span></div>
+      </div>
+      <div class="r-verdict">🔥 <strong>Verdict:</strong> ขึ้นเพราะเป็น ride เดียวที่ loop ใน DisneySea แต่ไม่ต้องรีบ เก็บไว้ตอนเย็น ประหยัด DPA ไว้ซื้อตัวอื่น</div>
+    </div>
+  </div>
+
+  <!-- ── SHOWS ── -->
+  <div class="section" style="margin-top:32px;">
+    <div class="section-label">Evening Shows — ตอนจบวัน</div>
+  </div>
+
+  <!-- BELIEVE -->
+  <div class="r-ride" style="border-color:rgba(155,127,212,0.4);">
+    <div class="r-head">
+      <img class="r-img" src="https://media1.tokyodisneyresort.jp/images/adventure/show/2067_main_visual_name_1.jpg?mod=20250702112003" alt="Believe Sea of Dreams" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="r-img-placeholder" style="background:linear-gradient(135deg,#0a0f2c,#1a1560,#3a2a9a);display:none">✨</div>
+      <div class="r-meta">
+        <div class="r-zone">MEDITERRANEAN HARBOR · NIGHTTIME SPECTACULAR</div>
+        <div class="r-name">Believe! Sea of Dreams</div>
+        <div class="r-stars" style="color:#b8a0f0;">★★★★★</div>
+        <div class="r-badges">
+          <span class="r-badge rb-type">Harbor Show</span>
+          <span class="r-badge rb-dur">30 นาที</span>
+          <span class="r-badge rb-dpa">DPA ¥2,500 (จุดดีสุด)</span>
+          <span class="r-badge rb-free">ดูฟรีได้</span>
+        </div>
+      </div>
+    </div>
+    <div class="r-body">
+      <div class="r-quotes">
+        <div class="r-quote">
+          "ห้ามพลาดโดยเด็ดขาด — เป็น nighttime spectacular ที่ดีที่สุดที่ Disney เคยสร้าง เรือขนาดใหญ่แล่นในท่าเรือ Mediterranean Harbor พร้อม laser, pyrotechnics, และ projection mapping บนกำแพงโรงแรม MiraCosta สูงใหญ่ ทำให้ท่าเรือทั้งหมดกลายเป็นเวที"
+          <div class="r-quote-src">— TDR Explorer</div>
+        </div>
+        <div class="r-quote">
+          "เรื่องราวติดตาม Peter Pan และ Wendy แล่นเรือทองคำไปยัง 'Sea of Dreams' พร้อมตัวละครยุคใหม่ — Moana, Miguel (Coco), Rapunzel, Elsa, Aladdin และอีกมาก · เพลงประกอบโดย MISIA นักร้องระดับตำนานของญี่ปุ่น"
+          <div class="r-quote-src">— TDR Explorer</div>
+        </div>
+        <div class="r-quote">
+          "นั่งดูรอบ free area ก็ได้วิวสวยมาก แต่ต้องไปจับที่นั่งก่อน 1-2 ชั่วโมง · DPA ¥2,500 ให้จุดพิเศษริมน้ำฝั่ง Piazza Topolino / Lido Isle — ใกล้เรือมากที่สุด"
+          <div class="r-quote-src">— Project Gora</div>
+        </div>
+        <div class="r-quote">
+          "เห็นภูเขาไฟ Mysterious Island พ่นไฟระหว่าง show ด้วย — เป็น moment ที่ทุกคนอุทานพร้อมกัน ขนลุกมาก"
+          <div class="r-quote-src">— 5 Lost Together</div>
+        </div>
+      </div>
+      <div class="r-tips">
+        <div class="r-tips-title">💡 คำแนะนำ</div>
+        <div class="r-tip-item"><span class="r-tip-dot">▸</span><span>เวลาตามกำหนด June: <strong style="color:#f5c060;">19:15 น.</strong> — เช็ค app วันนั้นอีกครั้ง อาจเปลี่ยนได้</span></div>
+        <div class="r-tip-item"><span class="r-tip-dot">▸</span><span>จุดดูฟรีที่ดี: ริม Mediterranean Harbor ฝั่งตรงข้ามโรงแรม MiraCosta · ไปจับที่ก่อน 18:00 น. (~1 ชม. ล่วงหน้า)</span></div>
+        <div class="r-tip-item"><span class="r-tip-dot">▸</span><span>DPA ¥2,500/คน (4 คน = ¥10,000) → จุด Piazza Topolino / Lido Isle — ริมน้ำแถวหน้า ไม่ต้องรีบไปจับที่</span></div>
+        <div class="r-tip-item"><span class="r-tip-dot">▸</span><span>หลัง show ทันที → คนออกพร้อมกันมาก ถ้าจะขึ้น Frozen รอบสุดท้ายหรือซื้อของ ให้ออกก่อน show จบ 5 นาที</span></div>
+      </div>
+      <div class="r-verdict" style="border-color:rgba(155,127,212,0.3);background:linear-gradient(135deg,rgba(155,127,212,0.12),rgba(155,127,212,0.04));color:#c8b8f8;">🌟 <strong style="color:#b8a0f0;">Verdict:</strong> สิ่งที่ดีที่สุดใน DisneySea — จบวันด้วย show นี้ทุกครั้ง ถ้าซื้อ DPA ได้ตัวเดียว ซื้อตัวนี้เลย</div>
+    </div>
+  </div>
+
+  <!-- SKY FULL OF COLORS -->
+  <div class="r-ride">
+    <div class="r-head">
+      <img class="r-img" src="https://media1.tokyodisneyresort.jp/images/adventure/show/2390_main_visual_name_1.jpg?mod=20250917100213" alt="Sky Full of Colors" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="r-img-placeholder" style="background:linear-gradient(135deg,#0a0520,#200a40,#3a1060);display:none">🎆</div>
+      <div class="r-meta">
+        <div class="r-zone">PARK-WIDE · FIREWORKS</div>
+        <div class="r-name">Sky Full of Colors</div>
+        <div class="r-stars">★★★★☆</div>
+        <div class="r-badges">
+          <span class="r-badge rb-type">Fireworks</span>
+          <span class="r-badge rb-dur">5 นาที</span>
+          <span class="r-badge rb-free">ดูได้ทุกจุด</span>
+        </div>
+      </div>
+    </div>
+    <div class="r-body">
+      <div class="r-quotes">
+        <div class="r-quote">
+          "ดอกไม้ไฟ 5 นาทีพร้อมเพลง Disney เป็น 'nice way to end the day' — เล็กกว่า Disney parks อื่นในโลก เพราะอยู่ใจกลาง Tokyo แต่ก็สวยในแบบของตัวเอง"
+          <div class="r-quote-src">— TDR Explorer</div>
+        </div>
+        <div class="r-quote">
+          "⚠️ ยกเลิกบ่อยมากเพราะลมแรงในอ่าว Tokyo — เช็ค app วันนั้นเลยว่าจะมีหรือเปล่า อย่าเพิ่งวางแผนพึ่งตัวนี้"
+          <div class="r-quote-src">— TDR Explorer</div>
+        </div>
+      </div>
+      <div class="r-tips">
+        <div class="r-tips-title">💡 คำแนะนำ</div>
+        <div class="r-tip-item"><span class="r-tip-dot">▸</span><span>เวลาตาม June schedule: <strong style="color:#f5c060;">21:15 น.</strong> — bonus จบวัน หลัง Believe! ประมาณ 2 ชั่วโมง</span></div>
+        <div class="r-tip-item"><span class="r-tip-dot">▸</span><span>มองเห็นได้จากทั่วสวน แต่บริเวณ Mediterranean Harbor มีมุมบัง — หาจุดโล่งๆ ข้างนอก harbor</span></div>
+        <div class="r-tip-item"><span class="r-tip-dot">▸</span><span>ถ้ายกเลิก ไม่ต้องเสียใจ — Believe! คือ highlight จริงๆ</span></div>
+      </div>
+      <div class="r-verdict">🎆 <strong>Verdict:</strong> Bonus ต่อท้ายวัน สั้นแต่สวย ถ้าสภาพอากาศดีและยังมีแรง รอดูได้เลย</div>
+    </div>
+  </div>
+
+  <!-- DANCE THE GLOBE -->
+  <div class="r-ride">
+    <div class="r-head">
+      <img class="r-img" src="https://media1.tokyodisneyresort.jp/images/adventure/show/2699_main_visual_name_1.jpg" alt="Dance the Globe" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="r-img-placeholder" style="background:linear-gradient(135deg,#1a0520,#3a1040,#5a2060);display:none">🌍</div>
+      <div class="r-meta">
+        <div class="r-zone">AMERICAN WATERFRONT · WATERFRONT PARK</div>
+        <div class="r-name">Dance the Globe!</div>
+        <div class="r-stars">★★★★☆</div>
+        <div class="r-badges">
+          <span class="r-badge rb-type">Outdoor Stage Show</span>
+          <span class="r-badge rb-dur">20 นาที</span>
+          <span class="r-badge rb-free">Entry Request (ฟรี)</span>
+          <span class="r-badge rb-dpa">DPA ¥2,500</span>
+        </div>
+      </div>
+    </div>
+    <div class="r-body">
+      <div class="r-quotes">
+        <div class="r-quote">
+          "Mickey Mouse เชิญเพื่อนมาร่วม festival เฉลิมฉลองวัฒนธรรมจากทั่วโลก — เต้นรำ, ดนตรี สดใส ตัวละคร Disney หลากหลาย เหมาะดูก่อน Believe! ช่วงเย็น"
+          <div class="r-quote-src">— Tokyo Disney Resort Official</div>
+        </div>
+      </div>
+      <div class="r-tips">
+        <div class="r-tips-title">💡 คำแนะนำ</div>
+        <div class="r-tip-item"><span class="r-tip-dot">▸</span><span>รอบเย็นสุด: <strong style="color:#f5c060;">18:40 น.</strong> — ดูก่อน Believe! แล้วเดินไปจับที่ harbor ได้เลย (เดิน ~5 นาที)</span></div>
+        <div class="r-tip-item"><span class="r-tip-dot">▸</span><span>Entry Request ฟรี — ทำใน app ทันทีที่เข้าสวน สล็อตเย็นมักว่างกว่าตอนกลางวัน</span></div>
+        <div class="r-tip-item"><span class="r-tip-dot">▸</span><span>ถ้า Entry Request ไม่ได้ → ไปดูแบบ walk-in ได้ (นั่งแถวหลัง) ถ้าที่ว่าง</span></div>
+      </div>
+      <div class="r-verdict">🌍 <strong>Verdict:</strong> Optional warm-up ก่อน Believe! ถ้าได้ Entry Request ตอนเย็น ดูได้เลย ไม่ดูก็ไม่เสียอะไร</div>
+    </div>
+  </div>
+
+  <!-- DREAMS TAKE FLIGHT -->
+  <div class="r-ride">
+    <div class="r-head">
+      <img class="r-img" src="https://media1.tokyodisneyresort.jp/images/adventure/show/2608_main_visual_name_1.jpg?mod=20251204160215" alt="Dreams Take Flight" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="r-img-placeholder" style="background:linear-gradient(135deg,#1a0a05,#3a2010,#6a3818);display:none">✈️</div>
+      <div class="r-meta">
+        <div class="r-zone">LOST RIVER DELTA · HANGAR STAGE (INDOOR)</div>
+        <div class="r-name">Dreams Take Flight</div>
+        <div class="r-stars">★★★★☆</div>
+        <div class="r-badges">
+          <span class="r-badge rb-type">Indoor Stage Show</span>
+          <span class="r-badge rb-dur">25 นาที</span>
+          <span class="r-badge rb-free">Entry Request (ฟรี)</span>
+          <span class="r-badge rb-dpa">DPA ¥2,500</span>
+        </div>
+      </div>
+    </div>
+    <div class="r-body">
+      <div class="r-quotes">
+        <div class="r-quote">
+          "Set ในโรงงานเครื่องบิน — Mickey Mouse และเพื่อนร่วมกันสร้างเครื่องบินพร้อมเพลงและเต้นสนุก ๆ มี Pete เป็น manager ขี้บ่น · Indoor = หนีฝนหรือความร้อนได้"
+          <div class="r-quote-src">— Tokyo Disney Resort Official (เปิดกรกฎาคม 2025)</div>
+        </div>
+      </div>
+      <div class="r-tips">
+        <div class="r-tips-title">💡 คำแนะนำ</div>
+        <div class="r-tip-item"><span class="r-tip-dot">▸</span><span>รอบสุดท้าย: <strong style="color:#f5c060;">17:20 น.</strong> — ดูก่อน Raging Spirits รอบเย็น แล้วค่อยไป Believe!</span></div>
+        <div class="r-tip-item"><span class="r-tip-dot">▸</span><span>Indoor air-conditioned — ดีมากถ้าวันนั้นร้อน หรืออยากพักขาก่อนยืนดู Believe!</span></div>
+        <div class="r-tip-item"><span class="r-tip-dot">▸</span><span>ห้ามถ่ายรูปและวิดีโอระหว่าง show — เก็บโทรศัพท์ไว้ก่อน</span></div>
+      </div>
+      <div class="r-verdict">✈️ <strong>Verdict:</strong> Optional แต่ดี — ถ้าว่างช่วง 17:00 ก่อนเข้าสู่โหมดเย็น ดูได้เลย</div>
+    </div>
+  </div>
+
+  <!-- Evening Timeline -->
+  <div class="section" style="margin-top:24px;">
+    <div class="section-label">Evening Game Plan — ตารางช่วงเย็น</div>
+    <div class="cost-box">
+      <div class="cost-head"><div class="cost-head-title">🌅 แผนช่วงเย็นแนะนำ</div></div>
+      <div class="cost-row-item"><span class="cost-lbl">17:00–17:30</span><span class="cost-val">Raging Spirits (Single Rider / คิวสั้น)</span></div>
+      <div class="cost-row-item"><span class="cost-lbl">17:20</span><span class="cost-val">Dreams Take Flight รอบ 17:20 (ถ้าได้ Entry Request)</span></div>
+      <div class="cost-row-item"><span class="cost-lbl">18:00</span><span class="cost-val">🍜 กินข้าวเย็นแถว Mediterranean Harbor</span></div>
+      <div class="cost-row-item"><span class="cost-lbl">18:15</span><span class="cost-val">จับที่ดู Believe! (ฟรีหรือ DPA) · ไปก่อน 1 ชม.!</span></div>
+      <div class="cost-row-item"><span class="cost-lbl">18:40</span><span class="cost-val">Dance the Globe! รอบ 18:40 (ถ้าได้ Entry Request)</span></div>
+      <div class="cost-row-item"><span class="cost-lbl" style="color:#b8a0f0;font-weight:500;">19:15 ⭐</span><span class="cost-val" style="color:#b8a0f0;font-weight:500;">Believe! Sea of Dreams — 30 นาที</span></div>
+      <div class="cost-row-item"><span class="cost-lbl">20:00</span><span class="cost-val">🛍️ ของที่ระลึก / Popcorn สุดท้าย</span></div>
+      <div class="cost-row-item" style="border-bottom:none;"><span class="cost-lbl">21:15</span><span class="cost-val">Sky Full of Colors 🎆 (ถ้าไม่ยกเลิก)</span></div>
+    </div>
+  </div>
+
+  <!-- ── QUICK REF ── -->
+  <div class="section" style="margin-top:32px;">
+    <div class="section-label">Quick Reference — สรุป DPA Priority</div>
+    <div class="cost-box">
+      <div class="cost-head"><div class="cost-head-title">ลำดับซื้อ DPA · ¥2,000 / คน / ride</div></div>
+      <div class="cost-row-item">
+        <span class="cost-lbl">🥇 อันดับ 1 — ซื้อทันทีที่เข้าสวน</span>
+        <span class="cost-val" style="color:#e8b84b;">Frozen ❄️</span>
+      </div>
+      <div class="cost-row-item">
+        <span class="cost-lbl">🥈 อันดับ 2 — ซื้อพร้อมกับ Frozen (คนละคน)</span>
+        <span class="cost-val" style="color:#e8b84b;">Soaring ✈️</span>
+      </div>
+      <div class="cost-row-item">
+        <span class="cost-lbl">🥉 อันดับ 3 — ถ้าคิว standby เกิน 90 นาที</span>
+        <span class="cost-val">Peter Pan ⭐</span>
+      </div>
+      <div class="cost-row-item">
+        <span class="cost-lbl">4️⃣ อันดับ 4 — ถ้าคิวเกิน 60 นาที</span>
+        <span class="cost-val">Rapunzel 🏮</span>
+      </div>
+      <div class="cost-row-item">
+        <span class="cost-lbl">🕐 อันดับ 5 — ช่วงบ่าย ถ้าของเหลือ</span>
+        <span class="cost-val">Tower 🏨</span>
+      </div>
+      <div class="cost-row-item" style="border-bottom:none;">
+        <span class="cost-lbl">❌ ไม่ต้องซื้อ DPA เลย</span>
+        <span class="cost-val" style="color:#f08080;">Raging Spirits 🔥</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-logo">DisneySea · June 2026</div>
+    <div>Japan Trip 2026 · 4 travelers · Rides & Reviews</div>
+  </div>
+
+</div><!-- /page-reviews -->
+
+</div><!-- /wrap -->
+
+<script>
+function switchTab(page, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
