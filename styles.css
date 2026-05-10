@@ -159,17 +159,6 @@ body{background:var(--bg);color:var(--white);
 
 .ride-body{padding:0 14px 14px;border-top:1px solid rgba(232,184,75,.07)}
 
-/* Live wait badge */
-.live-wait{display:inline-flex;align-items:center;gap:5px;font-family:'DM Mono',monospace;
-  font-size:11px;padding:2px 8px;border-radius:100px;font-weight:600;margin-top:4px;
-  transition:background .3s}
-.live-wait.lw-green{background:rgba(76,175,125,.18);color:#6dd4a0;border:1px solid rgba(76,175,125,.3)}
-.live-wait.lw-amber{background:rgba(240,160,48,.18);color:#f5c060;border:1px solid rgba(240,160,48,.3)}
-.live-wait.lw-red{background:rgba(224,85,85,.18);color:#f08080;border:1px solid rgba(224,85,85,.3)}
-.live-wait.lw-closed{background:rgba(224,85,85,.1);color:#f08080;border:1px solid rgba(224,85,85,.2)}
-.live-dot{width:6px;height:6px;border-radius:50%;background:currentColor;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-
 /* Wait stats bar */
 .wait-bar{background:rgba(232,184,75,.06);border:1px solid rgba(232,184,75,.12);
   border-radius:var(--r-sm);padding:9px 12px;margin:9px 0;
@@ -187,6 +176,11 @@ body{background:var(--bg);color:var(--white);
   line-height:1.65;border-left:2px solid var(--gold3);background:rgba(232,184,75,.04);
   border-radius:0 var(--r-sm) var(--r-sm) 0}
 .quote-src{font-size:10px;color:var(--muted);margin-top:2px;font-family:'DM Mono',monospace}
+.q-toggle{display:inline-block;margin-left:6px;background:transparent;border:1px solid rgba(232,184,75,.25);
+  color:var(--gold3);font-family:'DM Mono',monospace;font-size:9px;padding:1px 7px;border-radius:100px;
+  cursor:pointer;letter-spacing:.04em;transition:all .2s;vertical-align:middle}
+.q-toggle:hover,.q-toggle:focus{background:rgba(232,184,75,.12);border-color:rgba(232,184,75,.5);outline:none}
+.q-orig{font-style:italic;color:rgba(244,240,232,.7)}
 
 /* Tips */
 .tips-title{font-size:9px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
@@ -240,23 +234,6 @@ body{background:var(--bg);color:var(--white);
 .crowd-marker{position:absolute;top:-3px;width:14px;height:14px;border-radius:50%;
   background:var(--white);border:2px solid var(--bg);transform:translateX(-50%);
   box-shadow:0 0 6px rgba(0,0,0,.5)}
-
-/* Queue Live Section */
-.live-section{background:var(--bg2);border:1px solid rgba(91,155,213,.3);
-  border-radius:var(--r);padding:14px;margin-bottom:20px}
-.live-header{display:flex;align-items:center;gap:8px;margin-bottom:12px}
-.live-title{font-family:'Cinzel',serif;font-size:14px;color:#7ab4e0}
-.live-indicator{display:flex;align-items:center;gap:5px;font-size:10px;color:#6dd4a0;
-  font-family:'DM Mono',monospace}
-.live-dot-main{width:8px;height:8px;border-radius:50%;background:#6dd4a0;animation:pulse 2s infinite}
-.live-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
-@media(min-width:480px){.live-grid{grid-template-columns:repeat(3,1fr)}}
-.live-item{background:rgba(255,255,255,.04);border-radius:var(--r-sm);padding:8px 10px;border:1px solid rgba(255,255,255,.06)}
-.live-ride-name{font-size:11px;color:var(--muted);margin-bottom:4px;line-height:1.3}
-.live-ride-wait{font-family:'DM Mono',monospace;font-size:16px;font-weight:700}
-.lr-green{color:#6dd4a0} .lr-amber{color:#f5c060} .lr-red{color:#f08080} .lr-closed{color:rgba(244,240,232,.3)}
-.live-updated{font-size:10px;color:var(--muted);margin-top:10px;text-align:right;font-family:'DM Mono',monospace}
-.live-error{font-size:12px;color:var(--muted);text-align:center;padding:8px}
 
 /* Footer */
 .footer{text-align:center;padding-top:32px;border-top:1px solid var(--border);
